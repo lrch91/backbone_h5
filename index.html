@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="css/mescroll.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+    <title>H5页面</title>
+</head>
+<body>
+	<header class="header"><a class="btn-left" href="javascript:window.history.back()">返回</a><span class="nav_title"></span><a class="btn-right" href="javascript:window.open('about:blank','_self').close()">关闭</a></header>
+	<div id="device_content" >
+		
+	</div>
+	
+	<script type="text/template" id="default_list">
+		<p id="downloadTip" class="download-tip">1条新内容</p>
+		<div id="mescroll" class="mescroll">
+			<ul id="default_list" class="default_list">
+			</ul>
+		</div>
+	</script>
+
+	<script type="text/template" id="h5_loader">
+		<div class="loader">
+			<div class="dot dot1">掌</div>
+			<div class="dot dot2">上</div>
+			<div class="dot dot3">门</div>
+			<div class="dot dot4">户</div>
+		</div>
+	</script>
+	<script type="text/template" id="h5_loader1">
+		<div class="loader1">
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+		  </div>
+	</script>
+	<script>
+		window.onload=function () {  
+			document.addEventListener('touchstart',function (event) {  
+				if(event.touches.length>1){  
+					event.preventDefault();  
+				}  
+			})  
+			var lastTouchEnd=0;  
+			document.addEventListener('touchend',function (event) {  
+				var now=(new Date()).getTime();  
+				if(now-lastTouchEnd<=300){  
+					event.preventDefault();  
+				}  
+				lastTouchEnd=now;  
+			},false)  
+		} 
+
+		function canvas_draw(can, centerX, centerY, radius, color, callback){
+			window.setTimeout(function(){
+				can.width = can.offsetWidth;
+				can.height = can.offsetHeight;
+				can.style.display = "block";
+				var context = can.getContext('2d');
+				context.beginPath();
+				if(radius>0){
+					context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+				}
+				context.fillStyle = color;
+				context.fill();
+				radius += can.clientWidth/20;
+				if (radius < can.offsetWidth) {
+					canvas_draw(can, centerX, centerY, radius, color, callback);
+				}else{
+					context.clearRect(0, 0, can.width, can.height);
+					callback();
+					can.style.display = "none";
+				}
+			}, 1000 / 60);
+		}
+
+	</script>
+<script data-baseurl="./" data-main="main.js" src="libs/require.js" id="main"></script>
+</body>
+</html>
