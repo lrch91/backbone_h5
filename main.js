@@ -44,6 +44,7 @@
     	Backbone.emulateHTTP = true;
 	    Backbone.emulateJSON = true;
         Backbone.history.start();   //开始监控url变化
+        // Backbone.history.start({pushState : true});
     });
 
 })(window);

@@ -7,7 +7,7 @@ define(['backbone'], function () {
         'module4': 'module4/controller4.js',
         'module5': 'module5/addController5.js',
         'module6(/:pid)': 'module6/controller6.js',
-        'EFinancema(/:pid)': 'EFinancema/controller.js',
+        'EFinancema_main(/:pid)': 'EFinancema/controller.js',
         // '*actions': 'defaultAction'
     };
 

@@ -130,7 +130,12 @@ define(['text!module6/tpl.html','util'], function (tpl, util) {
 		submit_panel: function(e){
 			var can = e.currentTarget.getElementsByTagName("canvas")[0];
 			canvas_draw(can, e.offsetX, e.offsetY, 0, "white", function(){
-				alert("已提交");
+				$(".hint_bar").html("已选中");
+				$(".hint_bar").animate({top:"0.88rem"},function(){
+					setTimeout(function () {
+						$(".hint_bar").animate({top:"0.44rem"});
+					},1000);
+				})
 				$("div.pop_panel_bg").css("display","none");
 			});
 		}

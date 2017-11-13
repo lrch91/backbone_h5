@@ -1,25 +1,16 @@
-<div class="bottom_tab">
-	<button class="back_button">
-		关闭
-		<canvas class="wave"></canvas>
-	</button>
-	<button class="tofill_button">
-		填写处理意见
-		<canvas class="wave"></canvas>
-	</button>
-</div>
 <div class="tab_choice">
 	<div class="choice_one">
 	    <a><strong>处理单</strong></a>
-	    <label class="label_left"></label>
   	</div>
  	<div class="choice_two">
 	    <a><strong>审批意见</strong></a>
-	    <label class="label_right"></label>
+  	</div>
+ 	<div class="choice_three">
+	    <a><strong>正文</strong></a>
   	</div>
  	<div class="tab_one">
-	  	<ul>
-	  		<li><label><span>拟稿部门</span><i/></label><label><span>客户服务营销中心、电子销售公司、业务管理部</span><i/></label></li>
+	  	<ul id="form-items">
+	  		<!-- <li><label><span>拟稿部门</span><i/></label><label><span>客户服务营销中心、电子销售公司、业务管理部</span><i/></label></li>
 	  		<li><label><span>拟稿人</span><i/></label><label><span>李红梅</span><i/></label></li>
 	  		<li><label><span>拟稿时间</span><i/></label><label><span>2017年6月29日</span><i/></label></li>
 	  		<li><label><span>文件编号</span><i/></label><label><span>GXMCC-BOSS-2017-00160</span><i/></label></li>
@@ -29,26 +20,12 @@
 	  		<li><label><span>是否代办渠道工号</span><i/></label><label><span>内容内容内容</span><i/></label></li>
 	  		<li><label><span>申请类型</span><i/></label><label><span>新增工号</span><i/></label></li>
 	  		<li><label><span>申请原因</span><i/></label><label><span>吃饭</span><i/></label></li>
-	  		<li><label><span>完成时间要求</span><i/></label><label><span>内容内容内容</span><i/></label></li>
+	  		<li><label><span>完成时间要求</span><i/></label><label><span>内容内容内容</span><i/></label></li> -->
 	  	</ul>
  	</div>
   	<div class="tab_two">
-	  	<ul>
-	  		<li>
-	  			<div class="opinion_title">
-	  				<label>人力资源部意见</label>
-	  			</div>
-	  			<div class="opinion_handler">
-	  				<label class="column_handler">处理人:</label>
-	  				<label class="column_handerler_name">孙漂亮 2017-0629 18::05:05</label>
-	  			</div>
-	  			<div class="opinion_content">
-		  			<label class="column_opinion">意见:</label>
-		  			<label class="column_opinion_content">通过通过通过通过通过通</label>
-		  			<img class="arrow" src="/img/down_arrow_32.png" />
-	  			</div>
-	  		</li>
-	  		<li>
+	  	<ul id="opinion_items">
+	  		<!-- <li>
 	  			<div class="opinion_title">
 	  				<label>人力资源部意见</label>
 	  			</div>
@@ -61,93 +38,13 @@
 		  			<label class="column_opinion_content">通过</label>
 		  			<img class="arrow" src="/img/down_arrow_32.png" />
 	  			</div>
-	  		</li>
-	  		<li>
-	  			<div class="opinion_title">
-	  				<label>人力资源部意见</label>
-	  			</div>
-	  			<div class="opinion_handler">
-	  				<label class="column_handler">处理人:</label>
-	  				<label class="column_handerler_name">孙漂亮 2017-0629 18::05:05</label>
-	  			</div>
-	  			<div class="opinion_content">
-		  			<label class="column_opinion">意见:</label>
-		  			<label class="column_opinion_content">通过</label>
-		  			<img class="arrow" src="/img/down_arrow_32.png" />
-	  			</div>
-	  		</li>
-	  		<li>
-	  			<div class="opinion_title">
-	  				<label>人力资源部意见</label>
-	  			</div>
-	  			<div class="opinion_handler">
-	  				<label class="column_handler">处理人:</label>
-	  				<label class="column_handerler_name">孙漂亮 2017-0629 18::05:05</label>
-	  			</div>
-	  			<div class="opinion_content">
-		  			<label class="column_opinion">意见:</label>
-		  			<label class="column_opinion_content">通过</label>
-		  			<img class="arrow" src="/img/down_arrow_32.png" />
-	  			</div>
-	  		</li>
-	  		<li>
-	  			<div class="opinion_title">
-	  				<label>人力资源部意见</label>
-	  			</div>
-	  			<div class="opinion_handler">
-	  				<label class="column_handler">处理人:</label>
-	  				<label class="column_handerler_name">孙漂亮 2017-0629 18::05:05</label>
-	  			</div>
-	  			<div class="opinion_content">
-		  			<label class="column_opinion">意见:</label>
-		  			<label class="column_opinion_content">通过</label>
-		  			<img class="arrow" src="/img/down_arrow_32.png" />
-	  			</div>
-	  		</li>
-	  		<li>
-	  			<div class="opinion_title">
-	  				<label>人力资源部意见</label>
-	  			</div>
-	  			<div class="opinion_handler">
-	  				<label class="column_handler">处理人:</label>
-	  				<label class="column_handerler_name">孙漂亮 2017-0629 18::05:05</label>
-	  			</div>
-	  			<div class="opinion_content">
-		  			<label class="column_opinion">意见:</label>
-		  			<label class="column_opinion_content">通过</label>
-		  			<img class="arrow" src="/img/down_arrow_32.png" />
-	  			</div>
-	  		</li>
-	  		<li>
-	  			<div class="opinion_title">
-	  				<label>人力资源部意见</label>
-	  			</div>
-	  			<div class="opinion_handler">
-	  				<label class="column_handler">处理人:</label>
-	  				<label class="column_handerler_name">孙漂亮 2017-0629 18::05:05</label>
-	  			</div>
-	  			<div class="opinion_content">
-		  			<label class="column_opinion">意见:</label>
-		  			<label class="column_opinion_content">通过</label>
-		  			<img class="arrow" src="/img/down_arrow_32.png" />
-	  			</div>
-	  		</li>
-	  		<li>
-	  			<div class="opinion_title">
-	  				<label>人力资源部意见</label>
-	  			</div>
-	  			<div class="opinion_handler">
-	  				<label class="column_handler">处理人:</label>
-	  				<label class="column_handerler_name">孙漂亮 2017-0629 18::05:05</label>
-	  			</div>
-	  			<div class="opinion_content">
-		  			<label class="column_opinion">意见:</label>
-		  			<label class="column_opinion_content">通过</label>
-		  			<img class="arrow" src="/img/down_arrow_32.png" />
-	  			</div>
-	  		</li>
+	  		</li> -->
 	  	</ul>
-  	</div>
+	  </div>
+	  <div class="tab_three">
+		  <div id="form_articles">
+		  </div>
+   </div>
 </div>
 	
 
