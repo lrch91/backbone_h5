@@ -3,7 +3,8 @@ define([], function () {
         // idAttribute: "id",
         defaults: function () {
             return {
-            	id: ""
+                id: "",
+                name:"ddddd"
             };
         },
         events: {

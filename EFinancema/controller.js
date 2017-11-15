@@ -9,10 +9,11 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
         $.ajax({
             type: 'POST',
             url: util.url.EFinancema_login,
-            data: { j_username:'lushengde', j_password:'8888'},
-            // dataType: 'json',
+            // contentType: 'application/json;charset=utf-8',
+            data: { j_username:"zhujinliang", j_password:"8888"},
             timeout: 300,
             success: function(data){
+                console.log(data);
                 // alert('Ajax success!')
             },
             error: function(xhr, type){
@@ -20,21 +21,65 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
             }
         })
 
+        // var json = { procType:"03",procId:"60022099",userId:"zhujinliang",system:"employeeperfyear"};
+        // $.ajax({
+        //     type: 'POST',
+        //     url: util.url.EIP_MOA_Services_form,
+        //     contentType: 'application/json;charset=utf-8',
+        //     // data: JSON.stringify(json),
+        //     data:{ procType:"03",procId:"60022099",userId:"zhujinliang",system:"employeeperfyear"},
+        //     timeout: 300,
+        //     dataType: 'json',
+        //     success: function(data){
+        //         alert('Ajax success!')
+        //         console.log('EIP_MOA_Services_form_ajax');
+        //         console.log(data);
+        //     },
+        //     error: function(xhr, type){
+        //         alert('Ajax error!')
+        //     }
+        // })
+
 
         var model = new Model();
         name && model.set({
             name:name               //设置默认的属性值
         });
         // model.url = util.ip+"/api/articleDetail/"+pid;
-        model.url = util.url.EFinancema_form;
+        model.url = util.url.EIP_MOA_Services_form;
+        model.set({id:pid,procType:"03",procId:"60022099",userId:"zhujinliang",system:"employeeperfyear"});
+
         model.id= pid;
+        // model.procType= "03";
+        // model.procId= "60022099";
+        // model.userId= "zhujinliang";
+        // model.system= "employeeperfyear";
+        var view = new View({model:model});
         var view = new View({model:model});
         view.loading();
-        
-        model.fetch({
+        //backbone.js中line980,line1017被注释，fetch默认使用{read:get}方法
+        // model.fetch({
+        // 	success: function(model, response){
+        //         console.log("-----------请求成功时触发---------");
+        //         console.log('EIP_MOA_Services_form');
+        //         console.log(model.toJSON());
+        //         if(model.get('errFlag')!='N'){
+        //             alert(model.get('errMsg'));
+        //         }else{
+        //             view.init();
+        //         }
+        // 	},
+        // 	error: function(err, response){
+        //         console.log("-----------请求失败时触发---------");
+        // 		console.log(err);
+        //         alert('调用接口失败');
+        // 	}
+        // });
+        Backbone.sync("create", model, {
         	success: function(model, response){
-        		console.log("-----------请求成功时触发---------");
-                console.log(model.toJSON());
+                console.log("-----------请求成功时触发---------");
+                console.log('EIP_MOA_Services_form');
+                console.log(model);
                 if(model.get('errFlag')!='N'){
                     alert(model.get('errMsg'));
                 }else{
@@ -46,7 +91,7 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
         		console.log(err);
                 alert('调用接口失败');
         	}
-        });
+        })
         
         controller.onRouteChange = function () {
             console.log('change');  //可以做一些销毁工作，例如view.undelegateEvents()
