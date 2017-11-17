@@ -1,4 +1,4 @@
-define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinancema/approve_opinion.html','text!EFinancema/bottom_button.html','text!EFinancema/article.html','EFinancema/model2','router','util'], function (tpl, form_item, approve_opinion, bottom_button, article, Model2, appRouter, util) {
+define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinancema/form_item_attach.html','text!EFinancema/approve_opinion.html','text!EFinancema/bottom_button.html','text!EFinancema/article.html','EFinancema/model2','router','util'], function (tpl, form_item, form_item_attach, approve_opinion, bottom_button, article, Model2, appRouter, util) {
 
     var View = Backbone.View.extend({
         el: '#device_content',
@@ -23,14 +23,24 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 			
 			/* 初始化处理单信息 */
 			var items = this.model.get("documentDataInfo");
+			items.splice(0,3);
 			var itemsTpl = "";
 			for(var item of items){
-				var compiled = _.template(form_item);
-				itemsTpl += compiled({key: item.colmName,content: item.colmValue});
+				if(item.colmName != '附件列表'){
+					var compiled = _.template(form_item);
+					itemsTpl += compiled({key:item.colmName, content:item.colmValue});
+				}else{
+					var attachs = this.model.get("attachDataInfo");
+					if(attachs.length>0){
+						var compiled = _.template(form_item_attach);
+						itemsTpl += compiled({key:item.colmName, content:attachs[0].fileName});
+					}
+				}
 			}
 			$("#form-items").html(itemsTpl);
-			$("#form-items").append("<div class='fill4'></div>");
+			$("#form-items").append("<div class='fill98'></div>");
 			/* 初始化处理单信息 */
+
 			/* 初始化正文信息 */
 			var articles = this.model.get("bodyDataInfo");
 			var articlesTpl ="";
@@ -39,8 +49,9 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 				articlesTpl += compiled({article: art});
 			}
 			$("#form_articles").html(articlesTpl);
-			$("#form_articles").append("<div class='fill4'></div>");
+			$("#form_articles").append("<div class='fill98'></div>");
 			/* 初始化正文信息 */
+
 			/* 底部按钮初始化及绑定操作 */
 			$(".bottom_tab").css("display","block").html(_.template(bottom_button,{}));
 			$(".tofill_button").click(function(e){
@@ -58,17 +69,17 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 			/* 底部按钮初始化及绑定操作 */
 
 			var model2 = new Model2();
-			model2.url = util.url.EFinancema_opinion;
-			model2.id= this.model.id;
-			model2.fetch({
-				success: function(model, response){
-					console.log("-----------opinion请求成功时触发---------");
-					console.log(model.toJSON());
-					if(model.get('errFlag')!='N'){
-						alert(model.get('errMsg'));
+			model2.url = util.url.EFinancema_opinions;
+			model2.set({id:this.model.id, procType:this.model.get("procType"),procId:this.model.get("procId"),userId:this.model.get("userId"), system:"efinancema", pageNum:1, pageSize:100, keyColmName:"all"});
+			Backbone.sync("create", model2, {
+				success: function(mdl, response){
+					model2.set(mdl);
+					console.log("-----------EIP_MOA_Services_table请求成功时触发---------");
+					if(mdl.errFlag!='N'){
+						alert(mdl.errMsg);
 					}else{
 						/* 初始化处理意见 */
-						var opinions = model.get("commentInfo");
+						var opinions = model2.get("commentInfo");
 						var opinionTpl ='';
 						for(var opinion of opinions){
 							var compiled = _.template(approve_opinion);
@@ -83,7 +94,7 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 						}
 						$("#opinion_items").html(opinionTpl);
 						//添加4rem高度
-						$("#opinion_items").append("<div class='fill4'></div>");
+						$("#opinion_items").append("<div class='fill98'></div>");
 						/* 初始化处理意见 */
 
 						$(".hint_bar").html("加载成功");
@@ -95,11 +106,12 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 					}
 				},
 				error: function(err, response){
-					console.log("-----------请求失败时触发---------");
 					console.log(err);
 					alert('调用接口失败');
+				},
+				complete: function(model, response){
 				}
-			});
+			})
 
 			$(".arrow").click(function(event){
 				console.log($(this).attr("src"));
@@ -108,6 +120,16 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 					$(this).parents("li").animate({height:'11rem'},50);
 				}else if($(this).attr("src").search('/img/up_arrow_32.png')!=-1){
 					$(this).attr("src", "/img/down_arrow_32.png");
+					$(this).parents("li").animate({height:'7.9rem'},50);
+				}
+			});
+
+			$(".attachs_open").click(function(event){
+				if($(this).attr("src").search('/img/d_arrow_2618.png')!=-1){
+					$(this).attr("src", "/img/u_arrow_2618.png");
+					$(this).parents("li").animate({height:'11rem'},50);
+				}else if($(this).attr("src").search('/img/u_arrow_2618.png')!=-1){
+					$(this).attr("src", "/img/d_arrow_2618.png");
 					$(this).parents("li").animate({height:'7.9rem'},50);
 				}
 			});

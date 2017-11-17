@@ -6,15 +6,13 @@ define([], function () {
     util.ip = '';
     util.url = {
         'EFinancema_login': '/EIP_SSO/j_security_check',
-        // 'EFinancema_form': '/api/EFinancema/zjhb/biaodan',
-        'EIP_MOA_Services_form': '/EIP_MOA_Services/QueryProcDataForSimpleSrv.do?method=getQueryProcDataForSimple',
-        'EFinancema_table': '/api/EFinancema/zjhb/biaoge',
-        'EFinancema_opinion': '/api/EFinancema/zjhb/opinion',
-        'EFinancema_opinion2': '/api/EFinancema/zjhb/opinion2',
+        'EFinancema_form': '/EIP_MOA_Services/QueryProcDataForSimpleSrv.do?method=getQueryProcDataForSimple',
+        'EFinancema_table': '/EIP_MOA_Services/QueryProcDataForSimpleTableSrv.do?method=getQueryProcDataForSimpleTable',
+        'EFinancema_opinions': '/EIP_MOA_Services/QueryCommentSrv.do?method=getQueryComment',
     };
     for (var key in util.url){
         util.url[key] = util.ip + util.url[key];
-        console.log(key+":"+util.url[key]);
+        // console.log(key+":"+util.url[key]);
     }  
     
     return util;

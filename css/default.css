@@ -35,13 +35,13 @@ a {text-decoration: none;}
 	float: right;
 }
 
-.loader {position: absolute;width: 4rem;height: 4rem;margin: calc(50% - 4.75rem);display: block}
+.loader {position: absolute;width: 100vw;height: 25vh;top: 33vh;display: block}
 
-.loader .dot {opacity: 0.8; width: 0.8rem;height: 0.8rem;font-size:0.8rem;font-weight:bold;color: rgb(227, 239, 244);position: absolute;top: calc(50% + 2rem);}
-.loader .dot1 { left: 3rem; -webkit-animation: dot-jump 0.5s       cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s      cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
-.loader .dot2 { left: 4rem; -webkit-animation: dot-jump 0.5s 0.2s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s 0.2s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
-.loader .dot3 { left: 5rem; -webkit-animation: dot-jump 0.5s 0.4s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s 0.4s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
-.loader .dot4 { left: 6rem; -webkit-animation: dot-jump 0.5s 0.6s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s 0.6s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
+.loader .dot {opacity: 0.8; width: 0.8rem;height: 0.8rem;font-size:0.8rem;font-weight:bold;color: rgb(227, 239, 244);position: absolute;top: 1rem;}
+.loader .dot1 { left: 1.55rem; -webkit-animation: dot-jump 0.5s       cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s      cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
+.loader .dot2 { left: 2.75rem; -webkit-animation: dot-jump 0.5s 0.2s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s 0.2s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
+.loader .dot3 { left: 3.95rem; -webkit-animation: dot-jump 0.5s 0.4s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s 0.4s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
+.loader .dot4 { left: 5.15rem; -webkit-animation: dot-jump 0.5s 0.6s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s 0.6s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
 @keyframes dot-jump {
 	0% {
 	-webkit-transform: translateY(0);
@@ -181,7 +181,7 @@ a {text-decoration: none;}
 	font-size: 0.22rem;
 }
 
-.fill4{
+.fill98{
 	height: 0.98rem;
 	background-color: white;
 	width: 100%;	
@@ -335,13 +335,12 @@ canvas.wave{
 }
 
 .tab_one ul li{
-	display: none; 
 	background-color: white;
 	width: 7.5rem;
 	height: 0.88rem;
 	font-size: 0.3rem ;
-	border-bottom: 0.3px solid #D4D5D9;
 	display: table;
+	border-bottom: 0.01rem solid #D4D5D9;
 }
 
 .tab_one ul li label:first-child{
