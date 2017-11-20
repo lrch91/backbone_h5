@@ -8,6 +8,8 @@ define(['backbone'], function () {
         'module5': 'module5/addController5.js',
         'module6(/:pid)': 'module6/controller6.js',
         'EFinancema_main(/:pid)': 'EFinancema/controller.js',
+        'EFinancema_check':'EFinancema/controller2.js'
+
         // '*actions': 'defaultAction'
     };
 
@@ -19,7 +21,6 @@ define(['backbone'], function () {
 //          console.log('404');
             location.hash = 'module2';
         }
-
     });
 
     var router = new Router();

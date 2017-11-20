@@ -10,6 +10,5 @@ define(['text!module1/tpl.html'], function (tpl) {
             this.$el.html(_.template(tpl, {name: name}));
         }
     });
-
     return View1;
 });
