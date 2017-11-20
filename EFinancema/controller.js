@@ -21,7 +21,7 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
             type: 'POST',
             url: util.url.EFinancema_login,
             // contentType: 'application/json;charset=utf-8',
-            data: { j_username:"zhujinliang", j_password:"8888"},
+            data: { j_username:"lushengde", j_password:"8888"},
             // timeout: 300,
             success: function(data){
                 // console.log(data);
