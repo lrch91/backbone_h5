@@ -976,8 +976,8 @@
 		if(!n.url) {
 			a.url = i.result(r, "url") || F()
 		}
-		if(n.data == null && r && (t === "create" || t === "update" || t === "patch" || t==="read")) {
-		// if(n.data == null && r && (t === "create" || t === "update" || t === "patch")) {
+		// if(n.data == null && r && (t === "create" || t === "update" || t === "patch" || t==="read")) {
+		if(n.data == null && r && (t === "create" || t === "update" || t === "patch")) {
 			a.contentType = "application/json";
 			a.data = JSON.stringify(n.attrs || r.toJSON(n))
 		}
@@ -1014,8 +1014,8 @@
 		update: "PUT",
 		patch: "PATCH",
 		"delete": "DELETE",
-		// read: "GET"
-		read: "POST"
+		read: "GET"
+		// read: "POST"
 	};
 	e.ajax = function() {
 		return e.$.ajax.apply(e.$, arguments)
