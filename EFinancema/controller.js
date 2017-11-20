@@ -1,5 +1,4 @@
 define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, util) {
-
     var controller = function (pid) {
         var ss = $("html").css("font-size");
         // alert(ss);
@@ -17,17 +16,17 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
                 // alert('Ajax success!')
             },
             error: function(xhr, type){
-                alert('Ajax error!')
+                alert('Ajax error!');
             }
-        })
+        });
 
         // var json = { procType:"03",procId:"60022099",userId:"zhujinliang",system:"employeeperfyear"};
         // $.ajax({
         //     type: 'POST',
         //     url: util.url.EIP_MOA_Services_form,
         //     contentType: 'application/json;charset=utf-8',
-        //     // data: JSON.stringify(json),
-        //     data:{ procType:"03",procId:"60022099",userId:"zhujinliang",system:"employeeperfyear"},
+        //     // data: JSON.stringify(json),e
+        //     data:{ procType:"03",procId:"60022099",usrId:"zhujinliang",system:"employeeperfyear"},
         //     timeout: 300,
         //     dataType: 'json',
         //     success: function(data){
@@ -91,7 +90,7 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
         		console.log(err);
                 alert('调用接口失败');
         	}
-        })
+        });
         
         controller.onRouteChange = function () {
             console.log('change');  //可以做一些销毁工作，例如view.undelegateEvents()

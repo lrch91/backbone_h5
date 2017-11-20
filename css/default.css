@@ -34,6 +34,9 @@ a {text-decoration: none;}
 .right{
 	float: right;
 }
+.clear{
+	clear: both;
+}
 
 .loader {position: absolute;width: 4rem;height: 4rem;margin: calc(50% - 4.75rem);display: block}
 
@@ -784,3 +787,183 @@ div.pop_panel_bg .panel_submit{
 	color: white;
 	font-size: 1rem;
 }
+
+/*查看附件*/
+.check_attachment{
+	width: 100%;
+	height: 100%;
+	background-color: #f1f1f1;
+}
+/*附件列表*/
+.atm_list{
+	width: 100%;
+	height: 1.5rem;
+	border-bottom: .2rem solid #f1f1f1;
+	background: #fff;
+	padding: .2rem .28rem;
+}
+.atm_content{
+	font-size: .28px;
+}
+/*附件列表编号字体*/
+.atm_num{
+	font-size: .28rem;
+	color: #adadad;
+	margin-right: .2rem;
+}
+/*附件标题字体*/
+.atm_title{
+	font-size: .32rem;
+	color: #333;
+}
+/*附件列表下操作按钮*/
+.atm_operation{
+	height: .3rem;
+	padding-left: .96rem;
+	margin-top: .18rem;
+}
+.atm_size{
+	display: inline-block;
+	font-size: .28rem;
+	padding: .1rem 0;
+	margin-right: .42rem;
+	color: #8cb9ee;
+}
+/*操作按钮*/
+.atm_operation button{
+	font-size: .28rem;
+	color: #11a9ec;
+	margin-left: .08rem;
+	border-radius: .24rem;
+	text-align: center;
+	background-color: #fff;
+	outline: none;
+}
+.nomore{
+	font-size: .28rem;
+	color: #a4a4a4a4;
+	text-align: center;
+}
+
+
+/*部门总经理落实*/
+.general_manager_do{
+	width: 100%;
+	height: 100%;
+	overflow-y: hidden;
+}
+.general_manager_do li{
+	width: 100%;
+	height: .94rem;
+	line-height: .94rem;
+	font-size: .3rem;
+	color: #333;
+	background-color: #fafafa;
+	border-bottom: 1px solid #cdcdcd;
+	padding: 0 .28rem;
+}
+.general_manager_do .icon_plus{
+	display: inline-block;
+	width: .46rem;
+	height: .46rem;
+	margin-right: .2rem;
+	-moz-background-image:url("../img/icon_plus.png");
+}
+.dpm_manager{
+	font-size: .28rem;
+	color: #555;
+	padding-left: .8rem;
+}
+.manager_select{
+	display: inline-block;
+	width:.32rem ;
+	height: 32rem;
+	margin-top: .31rem;
+	background-image: url("../img/unchecked_32.png");
+}
+.footer {
+	width: 100%;
+	height: .98rem;
+	padding: .2rem .28rem;
+}
+.footer button{
+	width: 1.98rem;
+	height: .84rem;
+	border: 2px solid #11a9ec;
+	position:fixed;
+	bottom: 0;
+	background-color: #fafafa;
+	font-size: .3rem;
+	color: #11a9ec;
+}
+.confirm{
+	background-color: #11a9ec;
+	color: #fafafa;
+}
+
+
+/*填写处理意见*/
+.check_opinion{
+	width: 100%;
+	height: 100%;
+	background-color: #f1f1f1;
+}
+.check_title{
+	width: 100%;
+	height: .68rem;
+	padding:.16rem 0 0 .28rem;
+	font-size: .32rem;
+	color: #666;
+}
+.opinion_area{
+	width: 100%;
+	height: 3.16rem;
+	border: 2px solid #11a9ec;
+	margin: .2rem .28rem;
+	padding: .2rem;
+}
+.select_opinion{
+	width: 100%;
+	height: .94rem;
+	line-height: .94rem;
+	margin: 0 .28rem .88rem .28rem;
+	background-color: #fff;
+	font-size: .32rem;
+}
+.select_title{
+	display: inline-block;
+	margin-right: .68rem;
+	color: #666;
+	font-weight: bold;
+}
+.select_btn{
+	color: #333;
+}
+.select_down_arrow{
+	float: right;
+	width:.32rem;
+	height: .32rem;
+	margin-top: .31rem;
+	margin-right: .28rem;
+	background-image: url("../img/down_arrow_32.png");
+}
+.opinion_opera_btn{
+	padding-left: 2.54rem;
+}
+.opinion_opera_btn button{
+	height: .84rem;
+	font-size: .3rem;
+	color: #11a9ec;
+	border: 2px solid #11a9ec;
+	border-radius: 5px;
+	background-color: #fff;
+}
+.opinion_sv{
+	margin-left: .16rem;
+}
+
+
+
+
+
+

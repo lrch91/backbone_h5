@@ -42,7 +42,8 @@
     //Backbone会把自己加到全局变量中
     require(['backbone', 'underscore', 'router', 'meScroll'], function(){
         Backbone.emulateHTTP = true;
-        //设置Backbone.emulateJSON = true;将导致JSON根据模型参数进行序列化， 并通过application/x-www-form-urlencoded MIME类型来发送一个伪造HTML表单请求
+        //设置Backbone.emulateJSON = true;
+        // 将导致JSON根据模型参数进行序列化， 并通过application/x-www-form-urlencoded MIME类型来发送一个伪造HTML表单请求
 	    // Backbone.emulateJSON = true;
         Backbone.history.start();   //开始监控url变化
         // Backbone.history.start({pushState : true});

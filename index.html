@@ -40,6 +40,7 @@
 			<div class="dot dot4">户</div>
 		</div>
 	</script>
+
 	<script type="text/template" id="h5_loader1">
 		<div class="loader1">
 			<div class="dot"></div>
@@ -49,20 +50,21 @@
 			<div class="dot"></div>
 		  </div>
 	</script>
+
 	<script>
 		window.onload=function () {  
 			document.addEventListener('touchstart',function (event) {  
 				if(event.touches.length>1){  
 					event.preventDefault();  
 				}  
-			})  
-			var lastTouchEnd=0;  
-			document.addEventListener('touchend',function (event) {  
-				var now=(new Date()).getTime();  
+			});
+			var lastTouchEnd=0;
+			document.addEventListener('touchend',function (event) {
+				var now=(new Date()).getTime();
 				if(now-lastTouchEnd<=300){  
 					event.preventDefault();  
 				}  
-				lastTouchEnd=now;  
+				lastTouchEnd=now;
 			},false)  
 		} 
 
