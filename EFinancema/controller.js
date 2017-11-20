@@ -1,5 +1,4 @@
 define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, util) {
-
     var controller = function (pid) {
         var ss = $("html").css("font-size");
         // alert(ss);
@@ -46,7 +45,7 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
                 })
             },
             error: function(xhr, type){
-                alert('Ajax error!')
+                alert('Ajax error!');
             }
         })
         /* 登录 */

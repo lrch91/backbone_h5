@@ -10,8 +10,8 @@ define(['module2/model2', 'module2/view2'], function (Model, View) {
         model.fetch();          //拉取cgi等等，获取数据，再触发事件，界面收到消息做相应的动作
 
         controller.onRouteChange = function () {
-            console.log('change');  //可以做一些销毁工作，例如view.undelegateEvents()
-            view.undelegateEvents();
+                console.log('change');  //可以做一些销毁工作，例如view.undelegateEvents()
+                view.undelegateEvents();
         };
     };
 
