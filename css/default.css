@@ -796,13 +796,13 @@ div.pop_panel_bg .panel_submit{
 /*附件列表*/
 .atm_list{
 	width: 100%;
-	height: 1.5rem;
+	height: 1.7rem;
 	border-bottom: .2rem solid #f1f1f1;
 	background: #fff;
 	padding: .2rem .28rem;
 }
 .atm_content{
-	font-size: .28px;
+	font-size: .28rem;
 }
 /*附件列表编号字体*/
 .atm_num{
@@ -815,29 +815,30 @@ div.pop_panel_bg .panel_submit{
 	font-size: .32rem;
 	color: #333;
 }
-/*附件列表下操作按钮*/
 .atm_operation{
-	height: .3rem;
-	padding-left: .96rem;
-	margin-top: .18rem;
+    width: 100%;
+    height: auto;
+    padding-left: .96rem;
+    font-size: .28rem;
+    margin-top: .18rem;
 }
 .atm_size{
-	display: inline-block;
-	font-size: .28rem;
-	padding: .1rem 0;
-	margin-right: .42rem;
-	color: #8cb9ee;
+    display: inline-block;
+    color: #8cd9ee;
+    margin-right: .42rem;
 }
 /*操作按钮*/
 .atm_operation button{
-	font-size: .28rem;
-	color: #11a9ec;
-	margin-left: .08rem;
-	border-radius: .24rem;
-	text-align: center;
-	background-color: #fff;
-	outline: none;
+    outline: none;
+    border: 1px solid #11a9ec;
+    background: #fff;
+    border-radius: .27rem;
+    margin-left: .08rem;
+    color: #11a9ec;
+    padding: 2px 8.5px;
 }
+
+/*沒有更多內容了*/
 .nomore{
 	font-size: .28rem;
 	color: #a4a4a4a4;
@@ -900,7 +901,6 @@ div.pop_panel_bg .panel_submit{
 	color: #fafafa;
 }
 
-
 /*填写处理意见*/
 .check_opinion{
 	width: 100%;
@@ -910,50 +910,57 @@ div.pop_panel_bg .panel_submit{
 .check_title{
 	width: 100%;
 	height: .68rem;
-	padding:.16rem 0 0 .28rem;
+	box-sizing: border-box;
+	padding:.26rem 0 0 .28rem;
 	font-size: .32rem;
 	color: #666;
 }
 .opinion_area{
-	width: 100%;
+	width: 86%;
 	height: 3.16rem;
 	border: 2px solid #11a9ec;
-	margin: .2rem .28rem;
+	margin: 0 .38rem .2rem .28rem;
 	padding: .2rem;
+	background-color: #fff;
+	font-size: .3rem;
+	color: #333;
 }
 .select_opinion{
-	width: 100%;
+	width: 92%;
 	height: .94rem;
 	line-height: .94rem;
-	margin: 0 .28rem .88rem .28rem;
+	margin: 0 .28rem .4rem .28rem;
 	background-color: #fff;
 	font-size: .32rem;
+	outline: none;
 }
 .select_title{
 	display: inline-block;
 	margin-right: .68rem;
 	color: #666;
-	font-weight: bold;
 }
 .select_btn{
 	color: #333;
 }
-.select_down_arrow{
+.sel_down_arrow{
 	float: right;
-	width:.32rem;
-	height: .32rem;
-	margin-top: .31rem;
-	margin-right: .28rem;
-	background-image: url("../img/down_arrow_32.png");
+	width: 1.2rem;
+	height: .5rem;
+	cursor: pointer;
+	margin-top: .13rem;
+	background: url("../img/down_arrow_32.png") no-repeat;
 }
 .opinion_opera_btn{
 	padding-left: 2.54rem;
+	height: 1.5rem;
 }
 .opinion_opera_btn button{
 	height: .84rem;
+	padding: .2rem .2rem;
 	font-size: .3rem;
 	color: #11a9ec;
 	border: 2px solid #11a9ec;
+	box-sizing: border-box;
 	border-radius: 5px;
 	background-color: #fff;
 }
