@@ -7,9 +7,9 @@ define(['text!EFinancema/check_attachment.html','text!EFinancema/general_manager
             console.log("’‚ «check_attachment");
         },
         render: function () {
-            console.log(write);
-            this.$el.html(write);
-            var c = _.template(write);
+            console.log(general);
+            this.$el.html(general);
+            var c = _.template(general);
             this.$el.html(c({name:"lingxiao"}));
         }
     });
