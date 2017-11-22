@@ -1,4 +1,4 @@
-define(['text!module6/tpl.html','util'], function (tpl, util) {
+define(['text!EFinancema/write_opinion.html','util'], function (tpl, util) {
 
     var View3 = Backbone.View.extend({
         el: '#device_content',

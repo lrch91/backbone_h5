@@ -8,7 +8,8 @@ define(['backbone'], function () {
         'module5': 'module5/addController5.js',
         'module6(/:pid)': 'module6/controller6.js',
         'EFinancema_main(/:pid)': 'EFinancema/controller.js',
-        'EFinancema_check':'EFinancema/controller2.js'
+        'EFinancema_check':'EFinancema/controller2.js',
+        'EFinancema_writeOpinion(/:pid)':'EFinancema/controller_wo.js',
 
         // '*actions': 'defaultAction'
     };

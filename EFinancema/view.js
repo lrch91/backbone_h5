@@ -1,4 +1,4 @@
-define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinancema/form_item_attach.html','text!EFinancema/approve_opinion.html','text!EFinancema/bottom_button.html','text!EFinancema/article.html','EFinancema/model2','EFinancema/model3','router','util'], function (tpl, form_item, form_item_attach, approve_opinion, bottom_button, article, Model2, Model3, appRouter, util) {
+define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinancema/form_item_attach.html','text!EFinancema/approve_opinion.html','text!EFinancema/bottom_button.html','text!EFinancema/article.html','EFinancema/model2','EFinancema/model3','EFinancema/model4','router','util'], function (tpl, form_item, form_item_attach, approve_opinion, bottom_button, article, Model2, Model3, Model4, appRouter, util) {
 
     var View = Backbone.View.extend({
         el: '#device_content',
@@ -18,47 +18,87 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
         init: function () {
 			console.log('render=========');
         	$(".nav_title").html("流程审批");
-        	var newDate = getDate(Number(this.model.get("createDate")));
-            this.$el.html(_.template(tpl, {title: this.model.get('title'),content: this.model.get('content'),createDate: newDate}));
-			
+			this.$el.html(_.template(tpl, {}));
 			/* 初始化处理单信息 */
-			var items = this.model.get("documentDataInfo");
-			items.splice(0,3);
-			var itemsTpl = "";
-			var attachs;
-			for(var item of items){
-				if(item.colmName != '附件列表'){
-					var compiled = _.template(form_item);
-					itemsTpl += compiled({key:item.colmName, content:item.colmValue});
-				}else{
-					attachs = this.model.get("attachDataInfo");
-					if(attachs.length>0){
-						var compiled = _.template(form_item_attach);
-						itemsTpl += compiled({key:item.colmName, content:attachs[0].fileName});
+			var model4 = new Model4();
+			model4.url = util.url.EFinancema_form;
+			model4.set({procType:this.model.get("procType"),procId:this.model.get("procId"),userId:this.model.get("userId"),system:this.model.get("system")});
+			Backbone.sync("create", model4, {
+				success: function(mdl, response){
+					// model.set({name:"world", value:"874"});
+					model4.set(mdl);
+					console.log("-----------form请求成功时触发---------");
+					console.log(mdl);
+					if(mdl.errFlag!='N'){
+						alert(mdl.errMsg);
+					}else{
+						/* 初始化表单 */
+						var items = model4.get("documentDataInfo");
+						items.splice(0,3);
+						var itemsTpl = "";
+						var attachs;
+						for(var item of items){
+							if(item.colmName != '附件列表'){
+								var compiled = _.template(form_item);
+								itemsTpl += compiled({key:item.colmName, content:item.colmValue});
+							}else{
+								attachs = model4.get("attachDataInfo");
+								if(attachs.length>0){
+									var compiled = _.template(form_item_attach);
+									itemsTpl += compiled({key:item.colmName, content:attachs[0].fileName});
+								}
+							}
+						}
+						$("#form-items").html(itemsTpl);
+						$("#form-items").append("<div class='fill98'></div>");
+						/* 初始化表单 */
+						/* 初始化正文信息 */
+						var articles = model4.get("bodyDataInfo");
+						var articlesTpl ="";
+						for(var art of articles){
+							var compiled = _.template(article);
+							articlesTpl += compiled({article: art});
+						}
+						$("#form_articles").html(articlesTpl);
+						$("#form_articles").append("<div class='fill98'></div>");
+						/* 初始化正文信息 */
+						/* 附件展开 */
+						$(".attachs_open").click(function(event){
+							var li = $(this).parents("li");
+							if(attachs&&attachs.length>1){
+								li.css('height', (parseFloat(li.css('height')) + 0.8*(attachs.length-1))+"rem");
+								$("label",li).each(function(){
+									$(this).css('height', (parseFloat($(this).css('height')) + 0.8*(attachs.length-1))+"rem");
+								})
+								$(".attach-li",".attach-ul").remove();
+								var itemsTpl= '';
+								for(var item of attachs){
+									var compiled = _.template("<div class='attach-li' style='width:4.88rem; height: 0.8rem;'><span style='width:4.68rem;vertical-align: middle;word-wrap: break-word;display: inline-block;line-height: 0.32rem;font-size: 0.3rem;white-space:normal;margin-left: 0.2rem;'> <%=content%> </span><i/></div>");
+									itemsTpl += compiled({content:item.fileName});
+								}
+								$(".attach-ul").prepend(itemsTpl);
+							}
+							$(this).unbind('click');
+						});
+						/* 附件展开 */
 					}
+				},
+				error: function(err, response){
+					console.log(err);
+					alert('调用表单接口失败');
+				},
+				complete: function(mdl, response){
 				}
-			}
-			$("#form-items").html(itemsTpl);
-			$("#form-items").append("<div class='fill98'></div>");
+			})
 			/* 初始化处理单信息 */
-
-			/* 初始化正文信息 */
-			var articles = this.model.get("bodyDataInfo");
-			var articlesTpl ="";
-			for(var art of articles){
-				var compiled = _.template(article);
-				articlesTpl += compiled({article: art});
-			}
-			$("#form_articles").html(articlesTpl);
-			$("#form_articles").append("<div class='fill98'></div>");
-			/* 初始化正文信息 */
 
 			/* 底部按钮初始化及绑定操作 */
 			$(".bottom_tab").css("display","block").html(_.template(bottom_button,{}));
 			$(".tofill_button").click(function(e){
 				var can = e.currentTarget.getElementsByTagName("canvas")[0];
 				canvas_draw(can, e.offsetX, e.offsetY, 0, "white", function(){
-					appRouter.navigate("module6/"+"idididididid", {trigger: true});
+					// appRouter.navigate("module6/"+"idididididid", {trigger: true});
+					appRouter.navigate("EFinancema_writeOpinion/"+"idididididid", {trigger: true});
 				});
 			});
 			$(".back_button").click(function(e){
@@ -69,17 +109,18 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 			});
 			/* 底部按钮初始化及绑定操作 */
 
+			/* 初始化审批意见 */
 			var model2 = new Model2();
 			model2.url = util.url.EFinancema_opinions;
-			model2.set({id:this.model.id, procType:this.model.get("procType"),procId:this.model.get("procId"),userId:this.model.get("userId"), system:"efinancema", pageNum:1, pageSize:100, keyColmName:"all"});
+			model2.set({procId:this.model.get("processId"), userId:this.model.get("userId"), system:this.model.get("system"), commentType:this.model.get("commentType")});
 			Backbone.sync("create", model2, {
 				success: function(mdl, response){
 					model2.set(mdl);
-					console.log("-----------EIP_MOA_Services_table请求成功时触发---------");
+					console.log("-----------opinions请求成功时触发---------");
+					console.log(mdl);
 					if(mdl.errFlag!='N'){
 						alert(mdl.errMsg);
 					}else{
-						/* 初始化处理意见 */
 						var opinions = model2.get("commentInfo");
 						var opinionTpl ='';
 						for(var opinion of opinions){
@@ -95,41 +136,43 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 						}
 						$("#opinion_items").html(opinionTpl);
 						$("#opinion_items").append("<div class='fill98'></div>");
-						/* 初始化处理意见 */
 
-						$(".hint_bar").html("加载成功");
-						$(".hint_bar").animate({top:"0.88rem"},function(){
-							setTimeout(function () {
-								$(".hint_bar").animate({top:"0.44rem"});
-							},1000);
-						})
+						// $(".hint_bar").html("加载成功");
+						// $(".hint_bar").animate({top:"0.88rem"},function(){
+						// 	setTimeout(function () {
+						// 		$(".hint_bar").animate({top:"0.44rem"});
+						// 	},1000);
+						// })
 					}
 				},
 				error: function(err, response){
 					console.log(err);
 					alert('调用接口失败');
 				},
-				complete: function(model, response){
+				complete: function(mdl, response){
 				}
 			})
+			/* 初始化审批意见 */
 
+			/* 初始化表格 */
 			var model3 = new Model3();
-			model3.url = util.url.EFinancema_queryTpl;
-			var qi = [{colmEnName:"NextStep", colmValue:"", reserve1:""}];
-			model3.set({procId:this.model.get("procId"),userId:this.model.get("userId"), system:"efinancema", queryItem:qi});
+			model3.url = util.url.EFinancema_table;
+			//表格procId为processId
+			model3.set({procId:this.model.get("procId"),userId:this.model.get("userId"), procType:this.model.get("procType"), system:this.model.get("system"), pageNum:"1", pageSize: "100", keyColmName:"all"});
 			Backbone.sync("create", model3, {
 				success: function(mdl, response){
 					model3.set(mdl);
-					console.log("-----------EFinancema_queryTpl请求成功时触发---------");
+					console.log("-----------table请求成功时触发---------");
 					console.log(mdl);
 				},
 				error: function(err, response){
 					console.log(err);
 					alert('调用接口失败');
 				},
-				complete: function(model, response){
+				complete: function(mdl, response){
 				}
 			})
+			/* 初始化表格 */
 
 			// $(".attachs_open").click(function(event){
 			// 	if($(this).attr("src").search('/img/d_arrow_2618.png')!=-1){
@@ -140,24 +183,6 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 			// 		$(this).parents("li").animate({height:'7.9rem'},50);
 			// 	}
 			// });
-
-			$(".attachs_open").click(function(event){
-				var li = $(this).parents("li");
-				if(attachs&&attachs.length>1){
-					li.css('height', (parseFloat(li.css('height')) + 0.8*(attachs.length-1))+"rem");
-					$("label",li).each(function(){
-						$(this).css('height', (parseFloat($(this).css('height')) + 0.8*(attachs.length-1))+"rem");
-					})
-					$(".attach-li",".attach-ul").remove();
-					var itemsTpl= '';
-					for(var item of attachs){
-						var compiled = _.template("<div class='attach-li' style='width:4.88rem; height: 0.8rem;'><span style='width:4.68rem;vertical-align: middle;word-wrap: break-word;display: inline-block;line-height: 0.32rem;font-size: 0.3rem;white-space:normal;margin-left: 0.2rem;'> <%=content%> </span><i/></div>");
-						itemsTpl += compiled({content:item.fileName});
-					}
-					$(".attach-ul").prepend(itemsTpl);
-				}
-				$(this).unbind('click');
-			});
 
 			/* 按拖动高度处理bottom_tab是否显示 
 			$('#device_content').scroll(function () {
@@ -251,13 +276,6 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 			});
         },
     });
-    
-    
-   
-
-	function getDate(tm){ 
-		return new Date(parseInt(tm) * 1000).toLocaleString(); 
-	} 
 
     return View;
 });

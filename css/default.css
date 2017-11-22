@@ -915,24 +915,45 @@ div.pop_panel_bg .panel_submit{
 	font-size: .32rem;
 	color: #666;
 }
+
 .opinion_area{
 	width: 86%;
 	height: 3.16rem;
-	border: 2px solid #11a9ec;
-	margin: 0 .38rem .2rem .28rem;
+	border: 0.02rem solid #11a9ec;
+	margin: 0 .28rem .4rem .28rem;
 	padding: .2rem;
 	background-color: #fff;
 	font-size: .3rem;
 	color: #333;
+	border-radius: 0.05rem;
 }
-.select_opinion{
-	width: 92%;
-	height: .94rem;
-	line-height: .94rem;
-	margin: 0 .28rem .4rem .28rem;
-	background-color: #fff;
+
+.usual_opinions_option{
+	height: .7rem;
+	width: 2.4rem;
 	font-size: .32rem;
-	outline: none;
+	padding-top: 0.1rem; 
+	margin-left: .28rem; 
+}
+
+.select_opinion{
+	background: url("/img/down_arrow_32.png") no-repeat scroll right center transparent;
+	background-size:auto 0.3rem;
+	background-position:95% 50%;
+	margin: 0.0rem 0 0.00rem 0.00rem;
+	width: 4.54rem;
+	height: 0.7rem;
+	-webkit-appearance:none;
+	appearance:none;
+	border:none;
+	font-size:0.32rem;
+	padding:0 0.5rem 0 0.5rem;
+	display:block;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background-color: #FFFFFF;
+	color:#333333;
+	border-radius:0.1rem;
 }
 .select_title{
 	display: inline-block;
@@ -950,22 +971,45 @@ div.pop_panel_bg .panel_submit{
 	margin-top: .13rem;
 	background: url("../img/down_arrow_32.png") no-repeat;
 }
-.opinion_opera_btn{
-	padding-left: 2.54rem;
-	height: 1.5rem;
-}
-.opinion_opera_btn button{
+
+.opinion_submit{
+	left: 0.35rem;
+	position: absolute;
+	bottom: 3rem;
 	height: .84rem;
-	padding: .2rem .2rem;
-	font-size: .3rem;
+	width: 2.56rem;
+	font-size: .32rem;
 	color: #11a9ec;
-	border: 2px solid #11a9ec;
+	border: 0.03rem solid #11a9ec;
 	box-sizing: border-box;
-	border-radius: 5px;
+	border-radius: 0.05rem;
 	background-color: #fff;
 }
 .opinion_sv{
-	margin-left: .16rem;
+	left: 3.26rem;
+	position: absolute;
+	bottom: 3rem;
+	height: .84rem;
+	width: 1.92rem;
+	font-size: .32rem;
+	color: #11a9ec;
+	border: 0.03rem solid #11a9ec;
+	box-sizing: border-box;
+	border-radius: 0.05rem;
+	background-color: #fff;
+}
+.opinion_cc{
+	left: 5.53rem;
+	position: absolute;
+	bottom: 3rem;
+	height: .84rem;
+	width: 1.6rem;
+	font-size: .32rem;
+	color: #11a9ec;
+	border: 0.03rem solid #11a9ec;
+	box-sizing: border-box;
+	border-radius: 0.05rem;
+	background-color: #fff;
 }
 
 

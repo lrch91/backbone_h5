@@ -7,12 +7,25 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
         // alert(ww);
         
         var model = new Model();
-        name && model.set({
-            name:name               //设置默认的属性值
+        // model.set({
+        //     id:pid,
+        //     procType:"01",
+        //     procId:"61282964",
+        //     userId:"lushengde",
+        //     system:"efinancema"
+        // });
+        model.set({
+            id:pid,
+            procType:"01",
+            procId:"61282753",
+            userId:"zhujinliang",
+            system:"efinancema",
+            processId:"5022487",
+            commentType:"00",
+            types:"资金划拨",
+            j_username:"zhujinliang",
+            j_password:"8888"
         });
-        // model.url = util.ip+"/api/articleDetail/"+pid;
-        model.url = util.url.EFinancema_form;
-        model.set({id:pid,procType:"01",procId:"61281027",userId:"lushengde",system:"efinancema"});
         
         var view = new View({model:model});
         view.loading();
@@ -21,29 +34,11 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
             type: 'POST',
             url: util.url.EFinancema_login,
             // contentType: 'application/json;charset=utf-8',
-            data: { j_username:"lushengde", j_password:"8888"},
+            data: { j_username:model.get("j_username"), j_password:model.get("j_password")},
             // timeout: 300,
             success: function(data){
                 // console.log(data);
-                Backbone.sync("create", model, {
-                    success: function(mdl, response){
-                        // model.set({name:"world", value:"874"});
-                        model.set(mdl);
-                        console.log("-----------EIP_MOA_Services_form请求成功时触发---------");
-                        console.log(mdl);
-                        if(mdl.errFlag!='N'){
-                            alert(mdl.errMsg);
-                        }else{
-                            view.init();
-                        }
-                    },
-                    error: function(err, response){
-                        console.log(err);
-                        alert('调用接口失败');
-                    },
-                    complete: function(model, response){
-                    }
-                })
+                view.init();
             },
             error: function(xhr, type){
                 alert('Ajax error!')
