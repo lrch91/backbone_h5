@@ -1,6 +1,6 @@
 define([], function () {
     var Model = Backbone.Model.extend({
-        // idAttribute: "id",
+        // idAttribute: "_id",
         defaults: function () {
             return {
                 id: "",

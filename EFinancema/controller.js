@@ -1,6 +1,6 @@
 define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, util) {
 
-    var controller = function (pid) {
+    var controller = function (args) {
         var ss = $("html").css("font-size");
         // alert(ss);
         var ww = $(".header").css("width");
@@ -8,14 +8,14 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
         
         var model = new Model();
         // model.set({
-        //     id:pid,
+        //     id:args,
         //     procType:"01",
         //     procId:"61282964",
         //     userId:"lushengde",
         //     system:"efinancema"
         // });
         model.set({
-            id:pid,
+            id:args,
             procType:"01",
             procId:"61282753",
             userId:"zhujinliang",

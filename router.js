@@ -7,9 +7,11 @@ define(['backbone'], function () {
         'module4': 'module4/controller4.js',
         'module5': 'module5/addController5.js',
         'module6(/:pid)': 'module6/controller6.js',
-        'EFinancema_main(/:pid)': 'EFinancema/controller.js',
+        'EFinancema_main(/:args)': 'EFinancema/controller.js',
         'EFinancema_check':'EFinancema/controller2.js',
-        'EFinancema_writeOpinion(/:pid)':'EFinancema/controller_wo.js',
+        'EFinancema_writeOpinion(/:args)':'EFinancema/controller_wo.js',
+        'EFinancema_checkAttach(/:args)':'EFinancema/controller_ca.js',
+        'EFinancema_tableInfo(/:args)':'EFinancema/controller_ti.js',
 
         // '*actions': 'defaultAction'
     };

@@ -1,4 +1,4 @@
-define(['EFinancema/model', 'EFinancema/view_wo','util'], function (Model, View, util) {
+define(['EFinancema/model', 'EFinancema/view_ca','util'], function (Model, View, util) {
     
         var controller = function (args) {
             var json = JSON.parse(args);
