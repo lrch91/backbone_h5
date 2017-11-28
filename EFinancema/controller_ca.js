@@ -18,17 +18,20 @@ define(['EFinancema/model', 'EFinancema/view_ca','util'], function (Model, View,
             // });
             
             var view = new View({model:model});
-            // view.loading();
+            view.loading();
             /* 登录 */
             $.ajax({
                 type: 'POST',
                 url: util.url.EFinancema_login,
                 data: { j_username:model.get("j_username"), j_password:model.get("j_password")},
                 success: function(data){
+                    $(".hinter_title").html("登录成功");
+					$(".hinter").css("display", "block").fadeOut(2000);
                     view.init();
                 },
                 error: function(xhr, type){
-                    alert('Ajax error!')
+                    $(".hinter_title").html("登录失败");
+					$(".hinter").css("display", "block").fadeOut(2000);
                 }
             })
             /* 登录 */

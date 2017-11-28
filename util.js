@@ -20,7 +20,8 @@ define([], function () {
         //暂不能用 提交 procId userId comment nextUser nextStep nextStepName
         'EFinancema_submit': '/EIP_MOA_Services/SubmitProcDataSrv.do?method=getSubmitProcData',
         //附件下载 fileId system
-        'EFinancema_attachDownload': '/EIP_MOA_Services/DownloadAttachmentsSrv.do?method=getDownloadAttachments',
+        // 'EFinancema_attachDownload': '/EIP_MOA_Services/DownloadAttachmentsSrv.do?method=getDownloadAttachments',
+        'EFinancema_attachDownload': '/EIP_MOA_Services/DownloadAttachSrv.do?method=getDownloadAttach',
         //常用审批意见查询接口 userId flowName
         'EFinancema_usualOpinionOptions': '/EIP_MOA_Services/QueryPresetAuditingCommentsSrv.do?method=getQueryPresetAuditingComments',
         // 暂未用 流程轨迹查询接口 userId procId 注意这里的procId是process_unify_XXX表的processId字段

@@ -146,7 +146,7 @@ a {text-decoration: none;}
 	left: 2rem;
 	width: 3.5rem;
 	height: .8rem;
-	background-color: rgba(155, 156, 158, 0.4);
+	background-color: rgba(0, 0, 0, 0.8);
 	border-radius: 0.2rem;
   }
 
@@ -160,7 +160,7 @@ a {text-decoration: none;}
 	height: .5rem;
 	width:1.8rem;
 	font-size: .34rem;
-	color: #999;
+	color: white;
   }
 
   .jh-loading {
@@ -413,7 +413,7 @@ a {text-decoration: none;}
 	left: 2rem;
 	width: 3.5rem;
 	height: .8rem;
-	background-color: rgba(155, 156, 158, 0.4);
+	background-color: rgba(0, 0, 0, 0.8);
 	border-radius: 0.2rem;
   }
 
@@ -428,7 +428,7 @@ a {text-decoration: none;}
 	height: .5rem;
 	width: 3.5rem;
 	font-size: .34rem;
-	color: #999;
+	color: white;
   }
   /* 提示框 */
 
@@ -1344,9 +1344,9 @@ button{
 	display: none;
 	z-index: 1;
 	position: absolute;
-	top: .5rem;
-	left: .5rem;
-	width: 6.4rem;
+	top: calc(50% - 3.5rem);
+	left: 1rem;
+	width: 5.5rem;
 	height: 5rem;
 	border-radius: 0.1rem;
 	background-color: white;
@@ -1354,17 +1354,17 @@ button{
 	overflow :auto;
 	overflow-y :yes;
 	overflow-y :auto;
-	border: 0.05rem solid #eee;
 }
 
 .modal_p1 .modal_title{
-	width: 6.4rem;
+	width: 5.5rem;
 	height: 1rem;
-	border-bottom: 0.01rem solid grey;
+	color: white;
+	background-color: #11A9EB; 
 }
 
 .modal_p1 .modal_title .title1_text{
-	width:5.4rem;
+	width:4.5rem;
 	text-align: center;
 	word-wrap:break-word;
 	white-space:normal;
@@ -1372,7 +1372,7 @@ button{
     height: .34rem;
 	font-size: .34rem;
 	padding: .31rem 0 .35rem 0; 
-	color: grey;
+	color: white;
 	float:left;
 }
 
@@ -1386,25 +1386,25 @@ button{
 	font-size: .34rem;
 	float:left;
 	padding: .31rem 0 .35rem 0; 
-	color: #11A9EB;
+	color:white;
 }
 
 .modal_p1 .modal1_item{
 	clear: both;
-	width: 6.4rem;
+	width: 5.5rem;
 	height: 1rem;
 	border-bottom: 0.01rem solid grey;
 }
 
 .modal_p1 .modal1_item span{
-	width:5rem;
+	width:4.5rem;
 	display: block;
 	word-wrap:break-word;
 	white-space:normal;
 	float: left;
     height: .34rem;
 	font-size: .34rem;
-	padding: .28rem 0 .36rem .4rem; 
+	padding: .28rem 0 .36rem .23rem; 
 }
 
 .modal_p1 .modal1_item img{
@@ -1412,16 +1412,16 @@ button{
 	float: left;
 	width:0.54rem;
 	height:0.54rem;
-	padding: .23rem; 
+	padding: .23rem .23rem .23rem 0; 
 }
 
 .modal_p2{
 	display: none;
 	z-index: 2;
 	position: absolute;
-	top: .5rem;
-	left: .5rem;
-	width: 6.4rem;
+	top: calc(50% - 3.5rem);
+	left: 1rem;
+	width: 5.5rem;
 	height: 5rem;
 	border-radius: 0.1rem;
 	background-color: white;
@@ -1429,17 +1429,17 @@ button{
 	overflow :auto;
 	overflow-y :yes;
 	overflow-y :auto;
-	border: 0.05rem solid #eee;
 }
 
 .modal_p2 .modal_title{
-	width: 6.4rem;
+	width: 5.5rem;
 	height: 1rem;
-	border-bottom: 0.01rem solid grey;
+	color: white;
+	background-color: #11A9EB; 
 }
 
 .modal_p2 .modal_title .title2_text{
-	width:5.4rem;
+	width:4.5rem;
 	text-align: center;
 	word-wrap:break-word;
 	white-space:normal;
@@ -1447,7 +1447,7 @@ button{
     height: .34rem;
 	font-size: .34rem;
 	padding: .31rem 0 .35rem 0; 
-	color: grey;
+	color: white;
 	float:left;
 }
 
@@ -1461,24 +1461,24 @@ button{
 	font-size: .34rem;
 	float:left;
 	padding: .31rem 0 .35rem 0; 
-	color: #11A9EB;
+	color: white;
 }
 
 .modal_p2 .modal2_item{
-	width: 6.4rem;
+	width: 5.5rem;
 	height: 1rem;
 	border-bottom: 0.01rem solid grey;
 }
 
 .modal_p2 .modal2_item span{
-	width:5rem;
+	width:4.5rem;
 	display: block;
 	word-wrap:break-word;
 	white-space:normal;
 	float: left;
     height: .34rem;
 	font-size: .34rem;
-	padding: .28rem 0 .36rem .4rem; 
+	padding: .28rem 0 .36rem .23rem; 
 }
 
 .modal_p2 .modal2_item img{
@@ -1486,7 +1486,7 @@ button{
 	float: left;
 	width:0.54rem;
 	height:0.54rem;
-	padding: .23rem; 
+	padding: .23rem .23rem .23rem 0; 
 }
 
 .f_submit{

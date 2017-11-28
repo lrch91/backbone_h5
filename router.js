@@ -37,6 +37,5 @@ define(['backbone'], function () {
             controller.apply(null, params);     //每个模块约定都返回controller
         });
     });
-    router.ip = "http://172.24.104.35";
     return router;
 });

@@ -2,23 +2,11 @@ define(['EFinancema/model', 'EFinancema/view_wo','util'], function (Model, View,
     
         var controller = function (args) {
             var json = JSON.parse(args);
+            // alert(JSON.stringify(json));
             var model = new Model();
             model.set(json);
-            // model.set({
-            //     id:pid,
-            //     procType:"01",
-            //     procId:"61282753",
-            //     userId:"zhujinliang",
-            //     system:"efinancema",
-            //     processId:"5022487",
-            //     commentType:"00",
-            //     types:"资金划拨",
-            //     j_username:"zhujinliang",
-            //     j_password:"8888"
-            // });
-            
             var view = new View({model:model});
-            // view.loading();
+            view.loading();
             /* 登录 */
             $.ajax({
                 type: 'POST',
@@ -26,9 +14,18 @@ define(['EFinancema/model', 'EFinancema/view_wo','util'], function (Model, View,
                 data: { j_username:model.get("j_username"), j_password:model.get("j_password")},
                 success: function(data){
                     view.init();
+                    $(".hinter_title").html("登录成功");
+					$(".hinter").css("display", "block").fadeOut(2000);
                 },
-                error: function(xhr, type){
-                    alert('Ajax error!')
+                error: function(xhr, options, error){
+                    console.log("=============ajax============");
+                    console.log(xhr);
+                    console.log(options);
+                    console.log(error);
+                    console.log("=============ajax============");
+                    $(".hinter_title").html("登录失败");
+					$(".hinter").css("display", "block").fadeOut(2000);
+                    view.init();
                 }
             })
             /* 登录 */

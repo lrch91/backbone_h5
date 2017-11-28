@@ -7,14 +7,19 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
         // alert(ww);
         
         var model = new Model();
-        // model.set({
-        //     id:args,
-        //     procType:"01",
-        //     procId:"61282964",
-        //     userId:"lushengde",
-        //     system:"efinancema"
-        // });
         model.set({
+            id:args,
+            procType:"01",
+            procId:"61286064",
+            userId:"wangbo",
+            system:"efinancema",
+            processId:"5022487",
+            commentType:"00",
+            types:"资金划拨",
+            j_username:"wangbo",
+            j_password:"8888"
+        });
+        /* model.set({
             id:args,
             procType:"01",
             procId:"61282753",
@@ -25,7 +30,7 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
             types:"资金划拨",
             j_username:"zhujinliang",
             j_password:"8888"
-        });
+        }); */
         
         var view = new View({model:model});
         view.loading();
@@ -37,11 +42,14 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
             data: { j_username:model.get("j_username"), j_password:model.get("j_password")},
             // timeout: 300,
             success: function(data){
-                // console.log(data);
+                console.log('=========EFinancema_login登录成功=========');
+                $(".hinter_title").html("登录成功");
+                $(".hinter").css("display", "block").fadeOut(2000);
                 view.init();
             },
             error: function(xhr, type){
-                alert('Ajax error!')
+                $(".hinter_title").html("登录失败");
+                $(".hinter").css("display", "block").fadeOut(2000);
             }
         })
         /* 登录 */

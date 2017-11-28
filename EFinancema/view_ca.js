@@ -19,13 +19,17 @@ define(['text!EFinancema/check_attachment.html','EFinancema/model','router','uti
 			attachModel.set({fileId:po.get("attachDataInfo")[2].fileId,system:po.get("system")});
 			Backbone.sync("create", attachModel, {
 				success: function(mdl, response){
+					console.log(JSON.stringify(mdl));
 					po.attachModel = mdl;
 					console.log("-----------attachDownload请求成功时触发---------");
 					console.log(mdl);
+					$(".hinter_title").html("获取附件成功");
+					$(".hinter").css("display", "block").fadeOut(2000);
 				},
 				error: function(err, response){
 					console.log(err);
-					alert('调用接口失败');
+					$(".hinter_title").html("获取附件失败");
+					$(".hinter").css("display", "block").fadeOut(2000);
 				},
 				complete: function(mdl, response){
 				}

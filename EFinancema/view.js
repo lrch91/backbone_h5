@@ -32,9 +32,12 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 					po.formModel=mdl;
 					console.log("-----------form请求成功时触发---------");
 					console.log(mdl);
-					if(mdl.errFlag!='N'){
-						alert(mdl.errMsg);
+					if((!mdl) || mdl.errFlag!='N'){
+						$(".hinter_title").html("表单数据错误");
+						$(".hinter").css("display", "block").fadeOut(5000);
 					}else{
+						$(".hinter_title").html("获取表单成功");
+						$(".hinter").css("display", "block").fadeOut(5000);
 						/* 初始化表单 */
 						var items = mdl.documentDataInfo;
 						items.splice(0,3);
@@ -91,7 +94,8 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 				},
 				error: function(err, response){
 					console.log(err);
-					alert('调用表单接口失败');
+					$(".hinter_title").html("获取表单失败");
+					$(".hinter").css("display", "block").fadeOut(5000);
 				},
 				complete: function(mdl, response){
 				}
@@ -113,6 +117,8 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 					json.types = po.get("types");
 					json.j_username = po.get("j_username");
 					json.j_password = po.get("j_password");
+					// var str1 = encodeURI(JSON.stringify(json));
+					// var str2 = encodeURIComponent(JSON.stringify(json));
 					appRouter.navigate("EFinancema_writeOpinion/"+JSON.stringify(json), {trigger: true});
 				});
 			});
@@ -133,9 +139,12 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 					opinionModel.set(mdl);
 					console.log("-----------opinions请求成功时触发---------");
 					console.log(mdl);
-					if(mdl.errFlag!='N'){
-						alert(mdl.errMsg);
+					if((!mdl) || mdl.errFlag!='N'){
+						$(".hinter_title").html("审批意见数据错误");
+						$(".hinter").css("display", "block").fadeOut(5000);
 					}else{
+						$(".hinter_title").html("获取审批意见成功");
+						$(".hinter").css("display", "block").fadeOut(5000);
 						var opinions = opinionModel.get("commentInfo");
 						var opinionTpl ='';
 						for(var opinion of opinions){
@@ -162,7 +171,8 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 				},
 				error: function(err, response){
 					console.log(err);
-					alert('调用接口失败');
+					$(".hinter_title").html("获取审批意见失败");
+					$(".hinter").css("display", "block").fadeOut(5000);
 				},
 				complete: function(mdl, response){
 				}
@@ -179,10 +189,13 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 					po.tableModel = mdl;
 					console.log("-----------table请求成功时触发---------");
 					console.log(mdl);
+					$(".hinter_title").html("获取表格成功");
+					$(".hinter").css("display", "block").fadeOut(5000);
 				},
 				error: function(err, response){
 					console.log(err);
-					alert('调用接口失败');
+					$(".hinter_title").html("获取表格失败");
+					$(".hinter").css("display", "block").fadeOut(5000);
 				},
 				complete: function(mdl, response){
 				}
