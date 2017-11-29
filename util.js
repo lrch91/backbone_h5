@@ -1,6 +1,6 @@
 define([], function () {
     var util={};
-    util.ip="http://127.0.0.1/";
+    // util.ip="http://127.0.0.1/";
     // util.ip="http://192.168.191.1/";
     // util.ip="http://localhost:63342/";
     // util.ip="http://172.24.104.35";
@@ -31,6 +31,33 @@ define([], function () {
     for (var key in util.url){
         util.url[key] = util.ip + util.url[key];
         // console.log(key+":"+util.url[key]);
+    }
+
+    util.hint = function(text){
+        // var h = document.createElement("div");
+        // h.className="hinter";
+        // var ht = document.createElement("span");
+        // ht.className="hinter_title";
+        // var t=document.createTextNode(text);
+        // ht.appendChild(t);
+        // h.appendChild(ht);
+        // h.style.opacity = 0.8;
+        // var b = document.getElementsByTagName("body")[0];
+        // b.appendChild(h);
+        // setTimeout(function(){
+        //     h.style.opacity = 0;
+        //      h.parentNode.removeChild(h);
+        // },2000);
+
+        var nod = $('<div></div>').addClass('hinter').html('<span class="hinter_title">'+text+'</span>');
+        $('body').append(nod);
+        var h = (parseFloat(nod.css("top")) -100)+"px";
+        nod.animate({
+            opacity: 0, 
+            top: 80,
+          }, 1500, 'ease-out', function(){
+            nod.remove();
+          });
     }
 
     return util;

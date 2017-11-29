@@ -43,13 +43,11 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
             // timeout: 300,
             success: function(data){
                 console.log('=========EFinancema_login登录成功=========');
-                $(".hinter_title").html("登录成功");
-                $(".hinter").css("display", "block").fadeOut(2000);
+                util.hint("登录成功");
                 view.init();
             },
             error: function(xhr, type){
-                $(".hinter_title").html("登录失败");
-                $(".hinter").css("display", "block").fadeOut(2000);
+                util.hint("登录失败");
             }
         })
         /* 登录 */

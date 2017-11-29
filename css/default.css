@@ -406,7 +406,6 @@ a {text-decoration: none;}
   /* 确认对话框 */
   /* 提示框框 */
   .hinter{
-	display: none;
 	z-index: 10000;
 	position: absolute;
 	top: calc(50% - 0.4rem);

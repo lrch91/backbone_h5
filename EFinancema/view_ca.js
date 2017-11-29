@@ -35,6 +35,9 @@ define(['text!EFinancema/check_attachment.html','EFinancema/model','router','uti
 				}
 			})
 		},
+		loading:function () {
+			this.$el.html($('#h5_loader').html());
+        },
 
     });
     

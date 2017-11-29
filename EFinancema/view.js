@@ -33,11 +33,9 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 					console.log("-----------form请求成功时触发---------");
 					console.log(mdl);
 					if((!mdl) || mdl.errFlag!='N'){
-						$(".hinter_title").html("表单数据错误");
-						$(".hinter").css("display", "block").fadeOut(5000);
+						util.hint("表单数据错误");
 					}else{
-						$(".hinter_title").html("获取表单成功");
-						$(".hinter").css("display", "block").fadeOut(5000);
+						util.hint("获取表单成功");
 						/* 初始化表单 */
 						var items = mdl.documentDataInfo;
 						items.splice(0,3);
@@ -94,8 +92,8 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 				},
 				error: function(err, response){
 					console.log(err);
-					$(".hinter_title").html("获取表单失败");
-					$(".hinter").css("display", "block").fadeOut(5000);
+					util.hint("获取表单失败");
+					
 				},
 				complete: function(mdl, response){
 				}
@@ -140,11 +138,9 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 					console.log("-----------opinions请求成功时触发---------");
 					console.log(mdl);
 					if((!mdl) || mdl.errFlag!='N'){
-						$(".hinter_title").html("审批意见数据错误");
-						$(".hinter").css("display", "block").fadeOut(5000);
+						util.hint("获取审批意见错误");
 					}else{
-						$(".hinter_title").html("获取审批意见成功");
-						$(".hinter").css("display", "block").fadeOut(5000);
+						util.hint("获取审批意见成功");
 						var opinions = opinionModel.get("commentInfo");
 						var opinionTpl ='';
 						for(var opinion of opinions){
@@ -161,18 +157,17 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 						$("#opinion_items").html(opinionTpl);
 						$("#opinion_items").append("<div class='fill98'></div>");
 
-						// $(".hint_bar").html("加载成功");
-						// $(".hint_bar").animate({top:"0.88rem"},function(){
+						// $(".util.hint_bar").html("加载成功");
+						// $(".util.hint_bar").animate({top:"0.88rem"},function(){
 						// 	setTimeout(function () {
-						// 		$(".hint_bar").animate({top:"0.44rem"});
+						// 		$(".util.hint_bar").animate({top:"0.44rem"});
 						// 	},1000);
 						// })
 					}
 				},
 				error: function(err, response){
 					console.log(err);
-					$(".hinter_title").html("获取审批意见失败");
-					$(".hinter").css("display", "block").fadeOut(5000);
+					util.hint("获取审批意见失败");
 				},
 				complete: function(mdl, response){
 				}
@@ -189,13 +184,12 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 					po.tableModel = mdl;
 					console.log("-----------table请求成功时触发---------");
 					console.log(mdl);
-					$(".hinter_title").html("获取表格成功");
-					$(".hinter").css("display", "block").fadeOut(5000);
+					util.hint("获取表格成功");
 				},
 				error: function(err, response){
 					console.log(err);
-					$(".hinter_title").html("获取表格失败");
-					$(".hinter").css("display", "block").fadeOut(5000);
+					util.hint("获取表格失败");
+					
 				},
 				complete: function(mdl, response){
 				}
@@ -306,7 +300,7 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 			var json={};
 			var tm = this.po.tableModel;
 			if('N'!=tm.errFlag){
-				$('hinter_title').html('获取表格数据失败');
+				$('util.hinter_title').html('获取表格数据失败');
 			}else{
 				appRouter.navigate("EFinancema_tableInfo/"+JSON.stringify(tm), {trigger: true});
 			}
