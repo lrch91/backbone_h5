@@ -97,14 +97,12 @@ define(['text!module3/tpl.html','router','util'], function (tpl, appRouter, util
         	}
         },
         backOpe: function(e){
-			var can = e.currentTarget.getElementsByTagName("canvas")[0];
-			canvas_draw(can, e.offsetX, e.offsetY, 0, "white", function(){
+			wave(e, "white", function(){
 				window.history.back();
 			});
         },
         tofill: function(e){
-			var can = e.currentTarget.getElementsByTagName("canvas")[0];
-			canvas_draw(can, e.offsetX, e.offsetY, 0, "white", function(){
+			wave(e, "white", function(){
 				appRouter.navigate("module6/"+"idididididid", {trigger: true});
 			});
         },

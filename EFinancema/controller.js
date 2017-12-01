@@ -7,7 +7,7 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
         // alert(ww);
         
         var model = new Model();
-        model.set({
+       /*  model.set({
             id:args,
             procType:"01",
             procId:"61286064",
@@ -18,19 +18,19 @@ define(['EFinancema/model', 'EFinancema/view','util'], function (Model, View, ut
             types:"资金划拨",
             j_username:"wangbo",
             j_password:"8888"
-        });
-        /* model.set({
+        }); */
+        model.set({
             id:args,
             procType:"01",
-            procId:"61282753",
+            procId:"61286215",
             userId:"zhujinliang",
             system:"efinancema",
-            processId:"5022487",
+            processId:"5022547",
             commentType:"00",
             types:"资金划拨",
             j_username:"zhujinliang",
             j_password:"8888"
-        }); */
+        });
         
         var view = new View({model:model});
         view.loading();

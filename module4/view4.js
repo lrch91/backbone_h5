@@ -39,7 +39,7 @@ define(['text!module4/tpl.html','router','util'], function (tpl, appRouter, util
 			fragment = document.createDocumentFragment();
 			for (var i = 0; i < data.length; i++) {
 				var pd=data[i];
-				var str = '<button class="toSingleItem" id="'+pd.get('id')+'"><p>'+pd.get('title')+'我是标题我是标题'+'</p><p class="new-content">'+pd.get('title')+'我是内容我是内容我是内容'+'</p><canvas class="wave"></canvas></button>';
+				var str = '<button class="toSingleItem" id="'+pd.get('id')+'"><p>'+pd.get('title')+'我是标题我是标题'+'</p><p class="new-content">'+pd.get('title')+'我是内容我是内容我是内容'+'</p></button>';
 				var liDom=document.createElement("li");
 				liDom.innerHTML=str;
 				fragment.appendChild(liDom);
@@ -88,8 +88,7 @@ define(['text!module4/tpl.html','router','util'], function (tpl, appRouter, util
         	appRouter.navigate("module5", {trigger: true});
         },
         toSingleItem: function(e){
-			var can = e.currentTarget.getElementsByTagName("canvas")[0];
-			canvas_draw(can, e.offsetX, e.offsetY, 0, "grey", function(){
+			wave(e, "grey", function(){
 				$(".mescroll-totop").remove();
 				appRouter.navigate("module3/"+e.currentTarget.id, {trigger: true});
 			});

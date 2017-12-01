@@ -105,8 +105,7 @@ define(['text!EFinancema/write_opinion.html','util'], function (tpl, util) {
         	appRouter.navigate("module6/"+"idididididid", {trigger: true});
 		},
 		popPanel: function(e){
-			var can = e.currentTarget.getElementsByTagName("canvas")[0];
-			canvas_draw(can, e.offsetX, e.offsetY, 0, "#0BA2FE", function(){
+			wave(e, "#0BA2FE", function(){
 				$(".pop_panel_bg").css("display","block");
 			});
 		},
@@ -116,8 +115,8 @@ define(['text!EFinancema/write_opinion.html','util'], function (tpl, util) {
 		close_panel: function(e){
 			// var color = $(e.currentTarget).css("background-color");
 			// var can = e.currentTarget.childNodes[1];
-			var can = e.currentTarget.getElementsByTagName("canvas")[0];
-			canvas_draw(can, e.offsetX, e.offsetY, 0, "white", function(){
+			// var can = e.currentTarget.getElementsByTagName("canvas")[0];
+			wave(e, "white", function(){
 				$("div.pop_panel_bg").css("display","none");
 			});
 			
@@ -128,8 +127,7 @@ define(['text!EFinancema/write_opinion.html','util'], function (tpl, util) {
 			});
 		},
 		submit_panel: function(e){
-			var can = e.currentTarget.getElementsByTagName("canvas")[0];
-			canvas_draw(can, e.offsetX, e.offsetY, 0, "white", function(){
+			wave(e, "white", function(){
 				$(".hint_bar").html("已选中");
 				$(".hint_bar").animate({top:"0.88rem"},function(){
 					setTimeout(function () {

@@ -103,8 +103,7 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 			/* 底部按钮初始化及绑定操作 */
 			$(".bottom_tab").css("display","block").html(_.template(bottom_button,{}));
 			$(".tofill_button").click(function(e){
-				var can = e.currentTarget.getElementsByTagName("canvas")[0];
-				canvas_draw(can, e.offsetX, e.offsetY, 0, "white", function(){
+				wave(e, "white",function(){
 					var json={};
 					json.procType = po.get("procType");
 					json.procId = po.get("procId");
@@ -121,8 +120,7 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 				});
 			});
 			$(".back_button").click(function(e){
-				var can = e.currentTarget.getElementsByTagName("canvas")[0];
-				canvas_draw(can, e.offsetX, e.offsetY, 0, "white", function(){
+				wave(e, "white", function(){
 					window.history.back();
 				});
 			});
@@ -156,13 +154,6 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
 						}
 						$("#opinion_items").html(opinionTpl);
 						$("#opinion_items").append("<div class='fill98'></div>");
-
-						// $(".util.hint_bar").html("加载成功");
-						// $(".util.hint_bar").animate({top:"0.88rem"},function(){
-						// 	setTimeout(function () {
-						// 		$(".util.hint_bar").animate({top:"0.44rem"});
-						// 	},1000);
-						// })
 					}
 				},
 				error: function(err, response){
@@ -276,14 +267,12 @@ define(['text!EFinancema/tpl.html','text!EFinancema/form_item.html','text!EFinan
         	}
         },
         backOpe: function(e){
-			var can = e.currentTarget.getElementsByTagName("canvas")[0];
-			canvas_draw(can, e.offsetX, e.offsetY, 0, "white", function(){
+			wave(e, "white", function(){
 				window.history.back();
 			});
         },
         tofill: function(e){
-			var can = e.currentTarget.getElementsByTagName("canvas")[0];
-			canvas_draw(can, e.offsetX, e.offsetY, 0, "white", function(){
+			wave(e, "white", function(){
 				appRouter.navigate("module6/"+"idididididid", {trigger: true});
 			});
 		},

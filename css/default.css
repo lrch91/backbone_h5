@@ -37,7 +37,7 @@ a {text-decoration: none;}
 /* 页面加载loader */
 .loader {position: absolute;width: 100vw;height: 25vh;top: 33vh;display: block}
 .loader .dot {opacity: 0.8; width: 0.8rem;height: 0.8rem;font-size:0.8rem;font-weight:bold;color: rgb(227, 239, 244);position: absolute;top: 1rem;}
-.loader .dot1 { left: 1.55rem; -webkit-animation: dot-jump 0.5s       cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s      cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
+.loader .dot1 { left: 1.55rem; -webkit-animation: dot-jump 0.5s      cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s      cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
 .loader .dot2 { left: 2.75rem; -webkit-animation: dot-jump 0.5s 0.2s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s 0.2s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
 .loader .dot3 { left: 3.95rem; -webkit-animation: dot-jump 0.5s 0.4s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s 0.4s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
 .loader .dot4 { left: 5.15rem; -webkit-animation: dot-jump 0.5s 0.6s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; animation: dot-jump 0.5s 0.6s cubic-bezier(0.77, 0.47, 0.64, 0.28) alternate infinite; }
@@ -348,12 +348,24 @@ a {text-decoration: none;}
 
   .confirmer_box{
 	position: absolute;
-	top: calc(50% - 1.75rem);
-	left: .75rem;
+	top: calc(50% - 1.5rem);
+	left: 1rem;
 	height: 3rem;
-	width: 6rem;
+	width: 5.5rem;
 	background-color: white;
 	border-radius: 0.2rem;
+  }
+
+  .confirmer_box .confirmer_h{
+	position: absolute;
+	text-align: center;
+	word-wrap:break-word;
+	white-space:normal;
+	top: 0.2rem;
+	left: 0.25rem;
+	width: 5rem;
+	height: 0.35rem;
+	font:bold .34rem "Microsoft YaHei";
   }
 
   .confirmer_box .confirmer_title{
@@ -361,14 +373,14 @@ a {text-decoration: none;}
 	text-align: center;
 	word-wrap:break-word;
 	white-space:normal;
-	top: 0.7rem;
-	left: 0.4rem;
-	width: 5.2rem;
-	height: 0.8rem;
+	top: .7rem;
+	left: .25rem;
+	width: 5rem;
+	height: 1.5rem;
 	font-size: .34rem;
   }
 
-  .confirmer_box .confirmer_n{
+  .confirmer_box .confirmer_y{
 	position: absolute;
 	display: block;
 	top: 2.2rem;
@@ -377,38 +389,38 @@ a {text-decoration: none;}
 	word-wrap:break-word;
 	white-space:normal;
 	height: .5rem;
-	width: 3rem;
+	width: 2.75rem;
 	padding: 0.14rem 0 0.16rem 0;
 	font-size: .36rem;
 	color: rgb(18, 135, 231);
 	border-bottom-left-radius: 0.2rem;
-	border-top: 0.01rem solid grey;
-	border-right: 0.01rem solid grey;
+	border-top: 0.01rem solid #d2e2e7;
+	border-right: 0.01rem solid #d2e2e7;
   }
 
-  .confirmer_box .confirmer_y{
+  .confirmer_box .confirmer_n{
 	position: absolute;
 	display: block;
 	top: 2.2rem;
-	left: 3rem;
+	left: 2.75rem;
 	text-align: center;
 	word-wrap:break-word;
 	white-space:normal;
 	height: .5rem;
-	width: 3rem;
+	width: 2.75rem;
 	padding: 0.14rem 0 0.16rem 0;
 	font-size: .36rem;
 	color: rgb(18, 135, 231);
 	border-bottom-right-radius: 0.2rem;
-	border-top: 0.01rem solid grey;
-	border-left: 0.01rem solid grey;
+	border-top: 0.01rem solid #d2e2e7;
+	border-left: 0.01rem solid #d2e2e7;
   }
   /* 确认对话框 */
   /* 提示框框 */
   .hinter{
 	z-index: 10000;
 	position: absolute;
-	top: calc(50% - 0.4rem);
+	bottom: 0.8rem;
 	left: 2rem;
 	width: 3.5rem;
 	height: .8rem;
@@ -805,7 +817,7 @@ canvas.wave{
 
 .bottom_tab{
 	display: none;
-	z-index: 999;
+	z-index: 99999;
 	position: fixed;
 	width: 100%;
 	height: 0.98rem;
@@ -1141,8 +1153,6 @@ div.pop_panel_bg .panel_submit{
 .general_manager_do{
 	width: 100%;
 	height: 100%;
-	position: relative;
-	z-index: 1;
 }
 .general_manager_do span{
 	font-size: .3rem;
@@ -1186,15 +1196,11 @@ div.pop_panel_bg .panel_submit{
 	background: url("../img/icon_blank_24.png")center;
 }
 .general_btn {
+	position: absolute;
+	top: 0.07rem;
+	left: 0;
 	width: 100%;
-	height: .98rem;
-	position: fixed;
-	z-index:999;
-	bottom: 0;
-	background-color: #fafafa;
-	padding-top: .2rem;
-	padding-right: .28rem;
-	padding-bottom: .2rem;
+	height: .84rem;
 }
 button{
 	outline: none;
@@ -1326,7 +1332,7 @@ button{
 	background-color: #fff;
 }
 
-.modal_bg{
+.modal_bg1{
 	display: none;
 	z-index: 5555;
 	top: 0;
@@ -1336,66 +1342,51 @@ button{
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(155, 156, 158, 0.6);
+	background-color: rgba(155, 156, 158, 0.8);
 }
 
 .modal_p1{
-	display: none;
 	z-index: 1;
 	position: absolute;
-	top: calc(50% - 3.5rem);
+	top: calc(50% - 2.5rem);
 	left: 1rem;
 	width: 5.5rem;
-	height: 5rem;
-	border-radius: 0.1rem;
-	background-color: white;
-	font-size: 1rem;
-	overflow :auto;
-	overflow-y :yes;
-	overflow-y :auto;
+	border-radius: 0.2rem;
+	background-color: #f5f5f5;
 }
 
 .modal_p1 .modal_title{
 	width: 5.5rem;
-	height: 1rem;
-	color: white;
-	background-color: #11A9EB; 
+	height: 0.8rem;
+	border-top-left-radius: 0.2rem;
+	border-top-right-radius: 0.2rem;
 }
 
 .modal_p1 .modal_title .title1_text{
-	width:4.5rem;
+	width:5.5rem;
 	text-align: center;
 	word-wrap:break-word;
 	white-space:normal;
     display: block;
     height: .34rem;
-	font-size: .34rem;
-	padding: .31rem 0 .35rem 0; 
-	color: white;
+	font:bold .34rem "Microsoft YaHei";
+	padding: .21rem 0 .25rem 0; 
 	float:left;
 }
 
-.modal_p1 .modal_title .title1_back{
-	width:1rem;
-	text-align: center;
-	word-wrap:break-word;
-	white-space:normal;
-    display: block;
-    height: .34rem;
-	font-size: .34rem;
-	float:left;
-	padding: .31rem 0 .35rem 0; 
-	color:white;
-}
-
-.modal_p1 .modal1_item{
+.modal_p1 .modal1_items{
 	clear: both;
 	width: 5.5rem;
-	height: 1rem;
-	border-bottom: 0.01rem solid grey;
+	max-height: 2.4rem;
+	overflow-y :auto;
+}
+.modal1_items .modal1_item{
+	clear: both;
+	width: 5.5rem;
+	height: 0.8rem;
 }
 
-.modal_p1 .modal1_item span{
+.modal1_items .modal1_item span{
 	width:4.5rem;
 	display: block;
 	word-wrap:break-word;
@@ -1403,73 +1394,109 @@ button{
 	float: left;
     height: .34rem;
 	font-size: .34rem;
-	padding: .28rem 0 .36rem .23rem; 
+	padding: .16rem 0 .28rem .23rem; 
 }
 
-.modal_p1 .modal1_item img{
-	display: none;
+.modal1_items .modal1_item img{
 	float: left;
 	width:0.54rem;
 	height:0.54rem;
-	padding: .23rem .23rem .23rem 0; 
+	padding: .13rem 0 .13rem .23rem; 
+}
+
+.modal_p1 .modal1_oprt{
+	padding-top:0.3rem; 
+	width: 5.5rem;
+	height: 0.8rem;
+}
+
+.modal1_oprt .modal1_oprt_y{
+	float: left;
+	width: 2.74rem;
+	height: 0.79rem;
+	padding-top: 0.2rem; 
+	color: #11A9EB;
+	display: block;
+	text-align: center;
+	word-wrap:break-word;
+	white-space:normal;
+	border-bottom-left-radius: 0.2rem;
+	border-top: 0.01rem solid #c9c9c9;
+	border-right: 0.01rem solid #c9c9c9;
+	font:bold .36rem "Microsoft YaHei";
+}
+
+.modal1_oprt .modal1_oprt_n{
+	float: left;
+	width: 2.74rem;
+	height: 0.79rem;
+	padding-top: 0.2rem;
+	color: #11A9EB;
+	display: block;
+	text-align: center;
+	word-wrap:break-word;
+	white-space:normal;
+	border-bottom-left-radius: 0.2rem;
+	border-top: 0.01rem solid #c9c9c9;
+	border-right: 0.01rem solid #c9c9c9;
+	font:bold .34rem "Microsoft YaHei";
+}
+
+.modal_bg2{
+	display: none;
+	z-index: 5655;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(155, 156, 158, 0.8);
 }
 
 .modal_p2{
-	display: none;
-	z-index: 2;
+	z-index: 1;
 	position: absolute;
-	top: calc(50% - 3.5rem);
+	top: calc(50% - 2.5rem);
 	left: 1rem;
 	width: 5.5rem;
-	height: 5rem;
-	border-radius: 0.1rem;
-	background-color: white;
-	font-size: 1rem;
-	overflow :auto;
-	overflow-y :yes;
-	overflow-y :auto;
+	border-radius: 0.2rem;
+	background-color: #f5f5f5;
 }
 
 .modal_p2 .modal_title{
 	width: 5.5rem;
-	height: 1rem;
-	color: white;
-	background-color: #11A9EB; 
+	height: 0.8rem;
+	border-top-left-radius: 0.2rem;
+	border-top-right-radius: 0.2rem;
 }
 
 .modal_p2 .modal_title .title2_text{
-	width:4.5rem;
+	width:5.5rem;
 	text-align: center;
 	word-wrap:break-word;
 	white-space:normal;
     display: block;
     height: .34rem;
-	font-size: .34rem;
-	padding: .31rem 0 .35rem 0; 
-	color: white;
+	font:bold .34rem "Microsoft YaHei";
+	padding: .21rem 0 .25rem 0; 
 	float:left;
 }
 
-.modal_p2 .modal_title .title2_back{
-	width:1rem;
-	text-align: center;
-	word-wrap:break-word;
-	white-space:normal;
-    display: block;
-    height: .34rem;
-	font-size: .34rem;
-	float:left;
-	padding: .31rem 0 .35rem 0; 
-	color: white;
-}
-
-.modal_p2 .modal2_item{
+.modal_p2 .modal2_items{
+	clear: both;
 	width: 5.5rem;
-	height: 1rem;
-	border-bottom: 0.01rem solid grey;
+	max-height: 2.4rem;
+	overflow-y :auto;
+}
+.modal2_items .modal2_item{
+	clear: both;
+	width: 5.5rem;
+	height: 0.8rem;
 }
 
-.modal_p2 .modal2_item span{
+.modal2_items .modal2_item span{
 	width:4.5rem;
 	display: block;
 	word-wrap:break-word;
@@ -1477,45 +1504,63 @@ button{
 	float: left;
     height: .34rem;
 	font-size: .34rem;
-	padding: .28rem 0 .36rem .23rem; 
+	padding: .16rem 0 .28rem .23rem; 
 }
 
-.modal_p2 .modal2_item img{
-	display: none;
+.modal2_items .modal2_item img{
 	float: left;
 	width:0.54rem;
 	height:0.54rem;
-	padding: .23rem .23rem .23rem 0; 
+	padding: .13rem 0 .13rem .23rem; 
 }
 
-.f_submit{
-	display: none;
-	left: 1.87rem;
-	position: absolute;
-	bottom: 3rem;
-	height: .84rem;
-	width: 1.28rem;
-	font-size: .32rem;
-	color: #11a9ec;
-	border: 0.03rem solid #11a9ec;
-	box-sizing: border-box;
-	border-radius: 0.05rem;
-	background-color: #fff;
+.modal_p2 .modal2_oprt{
+	padding-top:0.3rem; 
+	width: 5.5rem;
+	height: 0.8rem;
 }
 
-.f_back{
-	display: none;
-	left: 4.35rem;
-	position: absolute;
-	bottom: 3rem;
-	height: .8rem;
-	width: 1.28rem;
-	font-size: .32rem;
-	color: #11a9ec;
-	border: 0.03rem solid #11a9ec;
-	box-sizing: border-box;
-	border-radius: 0.05rem;
-	background-color: #fff;
+.modal2_oprt .modal2_oprt_y{
+	float: left;
+	width: 2.74rem;
+	height: 0.79rem;
+	padding-top: 0.2rem; 
+	color: #11A9EB;
+	display: block;
+	text-align: center;
+	word-wrap:break-word;
+	white-space:normal;
+	border-bottom-left-radius: 0.2rem;
+	border-top: 0.01rem solid #c9c9c9;
+	border-right: 0.01rem solid #c9c9c9;
+	font:bold .36rem "Microsoft YaHei";
+}
+
+.modal2_oprt .modal2_oprt_n{
+	float: left;
+	width: 2.74rem;
+	height: 0.79rem;
+	padding-top: 0.2rem;
+	color: #11A9EB;
+	display: block;
+	text-align: center;
+	word-wrap:break-word;
+	white-space:normal;
+	border-bottom-left-radius: 0.2rem;
+	border-top: 0.01rem solid #c9c9c9;
+	border-right: 0.01rem solid #c9c9c9;
+	font:bold .34rem "Microsoft YaHei";
+}
+
+.modal_p3{
+	position:absolute;
+	z-index: 5755;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 0;
+	height: 100%;
+	background-color: #fafafa;
 }
 
 .info_table{

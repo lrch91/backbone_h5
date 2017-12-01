@@ -36,12 +36,13 @@
 	</div>
 	<div class="confirmer">
 		<div class="confirmer_box">
-			<span class="confirmer_title">取消取消取消取消取消取消取消取消取消取消取消取消取消</span>
-			<span class="confirmer_n">
-				取消
-			</span>
+			<span class="confirmer_h">提示</span>
+			<span class="confirmer_title">取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消</span>
 			<span class="confirmer_y">
 				确认
+			</span>
+			<span class="confirmer_n">
+				取消
 			</span>
 		</div>
 	</div>
@@ -54,11 +55,9 @@
 	<div class="bottom_tab">
 		<!-- <button class="back_button">
 			关闭
-			<canvas class="wave"></canvas>
 		</button>
 		<button class="tofill_button">
 			填写处理意见
-			<canvas class="wave"></canvas>
 		</button> -->
 	</div>
 	
@@ -110,8 +109,8 @@
 
 		function canvas_draw(can, centerX, centerY, radius, color, callback){
 			window.setTimeout(function(){
-				can.width = can.offsetWidth;
-				can.height = can.offsetHeight;
+				can.width = can.offsetWidth+20;
+				can.height = can.offsetHeight+20;
 				can.style.display = "block";
 				var context = can.getContext('2d');
 				context.beginPath();
@@ -127,13 +126,21 @@
 				}else{
 					context.clearRect(0, 0, can.width, can.height);
 					can.style.display = "none";
+					can.remove();
 					callback();
 				}
 			}, 1000 / 60);
 		}
 
 		function wave(e, color, callback){
-			var can = e.currentTarget.getElementsByTagName("canvas")[0];
+			if(!color){
+				color = "white";
+			}
+			// var can = e.currentTarget.getElementsByTagName("canvas")[0];
+			var can = document.createElement("canvas");
+			can.setAttribute("class", "wave");
+			e.currentTarget.appendChild(can);
+
 			var centerX = e.offsetX;
 			var centerY = e.offsetY;
 			var radius = 0;

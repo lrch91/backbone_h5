@@ -1,17 +1,19 @@
-define(['text!EFinancema/write_opinion.html','EFinancema/model','router','util'], function (tpl, Model, appRouter, util) {
+define(['text!EFinancema/write_opinion.html','text!EFinancema/general_manager_do.html','EFinancema/model','router','util'], function (tpl, general_manager_do, Model, appRouter, util) {
 
     var View = Backbone.View.extend({
         el: '#device_content',
 		
         events: {
 			'change .select_opinion': 'fill_usual_opinion',
-			'click .opinion_submit': 'open_modal1',
-			'click .opinion_sv': 'save',
+			'click .opinion_submit': 'modal1_open',
+			'click .opinion_sv': 'modal3_open',
 			'click .opinion_cc': 'back',
-			'click .modal1_item': 'open_modal2',
-			'click .title1_back': 'close_modal1',
-			'click .modal2_item': 'to_submit',
-			'click .title2_back': 'close_modal2',
+			'click .modal1_item': 'modal1_choose',
+			'click .modal1_oprt_y': 'modal1_y',
+			'click .modal1_oprt_n': 'modal1_n',
+			'click .modal2_item': 'modal2_choose',
+			'click .modal2_oprt_y': 'modal2_y',
+			'click .modal2_oprt_n': 'modal2_n',
         },
         initialize: function () {
 //          this.model.on('nameEvent', this.render, this);      //监听事件
@@ -33,26 +35,27 @@ define(['text!EFinancema/write_opinion.html','EFinancema/model','router','util']
 					console.log("-----------queryTpl-1请求成功时触发---------");
 					console.log(mdl);
 					if((!mdl) || mdl.errFlag!='N'){
-						$(".hinter_title").html("获取路径错误");
-						$(".hinter").css("display", "block").fadeOut(5000);
+						util.hint("获取路径错误");
 					}else{
-						$(".hinter_title").html("获取路径成功");
-						$(".hinter").css("display", "block").fadeOut(5000);
+						util.hint("获取路径成功");
 						var tmplt='';
 						for(var i=0;i<mdl.colmInfo.length;i++){
 							/* modal_p1渲染 */
-							var c3 = _.template("<div class='modal1_item' colmId=<%=colmId%> colmEnName=<%=colmEnName%> colmValue=<%=colmValue%> ><span><%=colmValue%></span><img src='/img/check_54.png' /></div>");
+							if(i==0){
+								var c3 = _.template("<div class='modal1_item' colmId=<%=colmId%> colmEnName=<%=colmEnName%> colmValue=<%=colmValue%> ><img src='/img/check_54.png' /><span><%=colmValue%></span></div>");
+							}else{
+								var c3 = _.template("<div class='modal1_item' colmId=<%=colmId%> colmEnName=<%=colmEnName%> colmValue=<%=colmValue%> ><img src='/img/uncheck_54.png' /><span><%=colmValue%></span></div>");
+							}
 							tmplt +=(c3({colmValue:mdl.colmInfo[i].colmValue,colmId:mdl.colmInfo[i].colmId,colmEnName:mdl.colmInfo[i].colmEnName}));
 							/* modal_p1渲染 */
 						}
-						tmplt = " <div class='modal_title'><span class='title1_text'>1.请选择提交路径</span><span class='title1_back'>返回</span></div>" + tmplt;
+						tmplt = "<div class='modal_title'><span class='title1_text'>路径选择</span></div><div class='modal1_items'>" + tmplt +"</div><div class='modal1_oprt'><span class='modal1_oprt_y'>确定</span><span class='modal1_oprt_n'>取消</span></div>";
 						$(".modal_p1").html(tmplt);
 					}
 				},
 				error: function(err, response){
 					console.log(err);
-					$(".hinter_title").html("获取路径失败");
-					$(".hinter").css("display", "block").fadeOut(5000);
+					util.hint("获取路径失败");
 				}
 			})
 			/* 获取路径 */
@@ -69,11 +72,9 @@ define(['text!EFinancema/write_opinion.html','EFinancema/model','router','util']
 					console.log("-----------usualOpinionOptions请求成功时触发---------");
 					console.log(mdl);
 					if((!mdl) || mdl.errFlag!='N'){
-						$(".hinter_title").html("获取常用意见错误");
-						$(".hinter").css("display", "block").fadeOut(5000);
+						util.hint("获取常用意见错误");
 					}else{
-						$(".hinter_title").html("获取常用意见成功");
-						$(".hinter").css("display", "block").fadeOut(5000);
+						util.hint("获取常用意见成功");
 						var options = mdl.auditingCommentsInfo;
 						var templt = "";
 						for(var op of options){
@@ -87,8 +88,7 @@ define(['text!EFinancema/write_opinion.html','EFinancema/model','router','util']
 				},
 				error: function(err, response){
 					console.log(err);
-					$(".hinter_title").html("获取常用意见失败");
-					$(".hinter").css("display", "block").fadeOut(5000);
+					util.hint("获取常用意见失败");
 				}
 			})
 			/* 初始化常用可选意见 */
@@ -101,15 +101,14 @@ define(['text!EFinancema/write_opinion.html','EFinancema/model','router','util']
 			var content = $(".select_opinion option:checked").html();
 			$(".opinion_area").text(content);
 		},
-		open_modal1:function(e){
+		modal1_open:function(e){
 			wave(e, "grey", function(){
 				var val = $(".select_opinion option:checked").val();
 				if(val==''){
-					alert("请选择处理意见");
+					util.hint("请选择处理意见");
 					return false;
 				}else{
-					$(".modal_bg").css("display","block");
-					$(".modal_p1").css("display","block");
+					$(".modal_bg1").css("display","block");
 				}
 			})
 
@@ -124,129 +123,176 @@ define(['text!EFinancema/write_opinion.html','EFinancema/model','router','util']
 				appRouter.navigate("EFinancema_main/"+"idididididid", {trigger: true});
 			})
 		},
-		open_modal2:function(e){
+		modal1_choose:function(e){
 			var t = e.currentTarget;
-			$(".modal1_item img").css("display", "none");
-			$("img",$(t)).css("display", "block");
-
-			var peopleModel = new Model();
-			peopleModel.url = util.url.EFinancema_queryTpl;
-			var qi = [{colmEnName:$(t).attr("colmEnName"), colmValue:$(t).attr("colmId"), reserve1:encodeURI($(t).attr("colmValue"))}];
-			peopleModel.set({procId:this.po.get("procId"),userId:this.po.get("userId"), system:this.po.get("system"), queryItem:qi});
-			
-			/* 调取数据前，展示oprt_loader */
-			$(".oprt_loader").css("display", "block");
-			/* 调取数据前，展示oprt_loader */
-			Backbone.sync("create", peopleModel, {
-				success: function(mdl, response){
-					console.log("-----------queryTpl-2请求成功时触发-----"+$(t).attr("colmId")+"----");
-					console.log(mdl);
-					if((!mdl) || mdl.errFlag!='N'){
-						$(".hinter_title").html("获取提交人错误");
-						$(".hinter").css("display", "block").fadeOut(5000);
-					}else{
-						$(".hinter_title").html("获取提交人成功");
-						$(".hinter").css("display", "block").fadeOut(5000);
-						var tmplt='';
-						for(var j=0;j<mdl.colmInfo.length;j++){
-							/* 渲染modal_p2列表 */
-							var c4 = _.template("<div class='modal2_item' colmId=<%=colmId%> colmEnName=<%=colmEnName%> colmValue=<%=colmValue%> ><span><%=colmValue%></span><img src='/img/check_54.png' /></div>");
-							tmplt += c4({colmValue:mdl.colmInfo[j].colmValue,colmId:mdl.colmInfo[j].colmId,colmEnName:mdl.colmInfo[j].colmEnName});
-							/* 渲染modal_p2列表 */
+			$(".modal1_item img").attr("src", "/img/uncheck_54.png");
+			$("img",$(t)).attr("src", "/img/check_54.png");
+		},
+		modal1_y:function(e){
+			var po = this.po;
+			$(".modal1_items .modal1_item").each(function(){
+				if($("img",$(this)).attr("src")=="/img/check_54.png"){
+					var itm = $(this);
+					if(itm && itm.attr("colmId")){
+						if(itm.attr("colmId")==0){
+							//路径colmid为0时，结束流程
+							var t = e.currentTarget;
+							var path={};
+							path.colmId = itm.attr("colmId");
+							path.colmEnName = itm.attr("colmEnName");
+							path.colmValue = itm.attr("colmValue");
+							util.confirmer('是否进行"'+path.colmValue+'"',function(){
+								util.oprtLoader();
+								var submitModel = new Model();
+								submitModel.url = util.url.EFinancema_submit;
+								var colmInfo = [];
+								var ciComment ={colmEnName:"Comment",colmId:"Comment",colmValue:encodeURI($(".opinion_area").html())};
+								var ciStep ={colmEnName:path.colmEnName,colmId:path.colmId,colmValue:encodeURI(path.colmValue)};
+								colmInfo.push(ciComment);
+								colmInfo.push(ciStep);
+								submitModel.set({procId:po.get("procId"),userId:po.get("userId"),system:po.get("system"),colmInfo:colmInfo});
+								Backbone.sync("create", submitModel, {
+									success: function(mdl, response){
+										util.oprtLoader(0);
+										console.log("-----------queryTpl-2请求成功时触发-----"+$(t).attr("colmId")+"----");
+										console.log(mdl);
+										if((!mdl) || mdl.errFlag!='N'){
+											util.hint("提交审批失败");
+										}else{
+											util.hint("提交审批成功");
+											$(".modal_bg1").css("display", "none");
+											$(".modal_bg2").css("display", "none");
+										}
+									},
+									error: function(err, response){
+										util.oprtLoader(0);
+										console.log(err);
+										util.hint("提交审批失败");
+									},
+								})
+							},function(){
+								util.hint("已取消");
+							});
+						}else{
+							//路径colmid不为0时，请求提交人
+							var peopleModel = new Model();
+							peopleModel.url = util.url.EFinancema_queryTpl;
+							var qi = [{colmEnName:itm.attr("colmEnName"), colmValue:itm.attr("colmId"), reserve1:encodeURI(itm.attr("colmValue"))}];
+							peopleModel.set({procId:po.get("procId"),userId:po.get("userId"), system:po.get("system"), queryItem:qi});
+							/* 调取数据前，展示oprt_loader */
+							util.oprtLoader();
+							/* 调取数据前，展示oprt_loader */
+							Backbone.sync("create", peopleModel, {
+								success: function(mdl, response){
+									util.oprtLoader(0);
+									console.log("-----------queryTpl-2请求成功时触发-----"+itm.attr("colmId")+"----");
+									console.log(mdl);
+									if((!mdl) || mdl.errFlag!='N'){
+										util.hint("获取提交人错误");
+									}else{
+										util.hint("获取提交人成功");
+										var tmplt='';
+										for(var j=0;j<mdl.colmInfo.length;j++){
+											/* 渲染modal_p2列表 */
+											if(j==0){
+												var c4 = _.template("<div class='modal2_item' colmId=<%=colmId%> colmEnName=<%=colmEnName%> colmValue=<%=colmValue%> ><img src='/img/check_54.png' /><span><%=colmValue%></span></div>");
+											}else{
+												var c4 = _.template("<div class='modal2_item' colmId=<%=colmId%> colmEnName=<%=colmEnName%> colmValue=<%=colmValue%> ><img src='/img/uncheck_54.png' /><span><%=colmValue%></span></div>");
+											}
+											tmplt += c4({colmValue:mdl.colmInfo[j].colmValue,colmId:mdl.colmInfo[j].colmId,colmEnName:mdl.colmInfo[j].colmEnName});
+											/* 渲染modal_p2列表 */
+										}
+										tmplt = "<div class='modal_title'><span class='title2_text'>提交人选择</span></div><div class='modal2_items'>" + tmplt +"</div><div class='modal2_oprt'><span class='modal2_oprt_y'>确定</span><span class='modal2_oprt_n'>取消</span></div>";;
+										$(".modal_p2").html(tmplt);
+										$(".modal_bg2").css("display","block");
+									}
+								},
+								error: function(err, response){
+									util.oprtLoader(0);
+									console.log(err);
+									util.hint("获取提交人失败");
+								}
+							})
 						}
-						tmplt = "<div class='modal_title'><span class='title2_text'>2.请选择提交人</span><span class='title2_back'>返回</span></div>" + tmplt;
-						$(".modal_p2").html(tmplt);
-						$(".modal_p2").css("display","block");
 					}
-				},
-				error: function(err, response){
-					console.log(err);
-					$(".hinter_title").html("获取提交人失败");
-					$(".hinter").css("display", "block").fadeOut(5000);
-				},
-				complete: function(mdl, response){
-					/* 调取数据后，关闭oprt_loader */
-					$(".oprt_loader").css("display", "none");
-					/* 调取数据后，关闭oprt_loader */
+					return true;
 				}
 			})
 		},
-		close_modal1:function(e){
-			$(".modal_p1").css("display", "none");
-			$(".modal_bg").css("display", "none");
-			$(".modal1_item", $(".modal_p1")).each(function(){
-				if($("img",$(this)).css("display")=="block"){
-					$("img",$(this)).css("display", "none");
-				}
-			})
+		modal1_n:function(e){
+			$(".modal_bg1").css("display", "none");
 		},
-		to_submit:function(e){
-			var po=this.po;
+		modal2_choose:function(e){
 			var t = e.currentTarget;
+			$(".modal2_item img").attr("src", "/img/uncheck_54.png");
+			$("img",$(t)).attr("src", "/img/check_54.png");
+		},
+		modal2_y:function(e){
+			var po=this.po;
 			var path={};
-			$(".modal_p1 .modal1_item").each(function(){
-				if($("img",$(this)).css("display")=="block"){
+			$(".modal1_items .modal1_item").each(function(){
+				if($("img",$(this)).attr("src")=="/img/check_54.png"){
 					path.colmId = $(this).attr("colmId");
 					path.colmEnName = $(this).attr("colmEnName");
 					path.colmValue = $(this).attr("colmValue");
 					return true;
 				}
 			})
-			
 			var people={};
-			people.colmId = $(t).attr("colmId");
-			people.colmEnName = $(t).attr("colmEnName");
-			people.colmValue = $(t).attr("colmValue");
-			$("img",$(t)).animate({display:"block"},function(){
-				$(".confirmer_title").html('是否提交给"'+people.colmValue+'"进行"'+path.colmValue+'"');
-				$(".confirmer_n").click(function(){
-					$(".confirmer").css("display", "none");
-					$(".modal2_item",$(".modal_p2")).each(function(){
-						$("img",$(this)).css("display", "none");
-					})
-					$(".hinter").css("display", "block").fadeOut(1500);
-				})
-				$(".confirmer_y").click(function(){
-					var submitModel = new Model();
-					submitModel.url = util.url.EFinancema_submit;
-					var colmInfo = [];
-					var ciComment ={colmEnName:"Comment",colmId:"Comment",colmValue:encodeURI($(".opinion_area").html())};
-					var ciStep ={colmEnName:path.colmEnName,colmId:path.colmId,colmValue:encodeURI(path.colmValue)};
-					var ciUser ={colmEnName:people.colmEnName,colmId:people.colmId,colmValue:encodeURI(people.colmValue)};
-					colmInfo.push(ciComment);
-					colmInfo.push(ciStep);
-					colmInfo.push(ciUser);
-					submitModel.set({procId:po.get("procId"),userId:po.get("userId"),system:po.get("system"),colmInfo:colmInfo});
-					Backbone.sync("create", submitModel, {
-						success: function(mdl, response){
-							console.log("-----------queryTpl-2请求成功时触发-----"+$(t).attr("colmId")+"----");
-							console.log(mdl);
-							if((!mdl) || mdl.errFlag!='N'){
-								$(".confirmer").css("display", "none");
-								$(".hinter_title").html("提交审批失败");
-								$(".hinter").css("display", "block").fadeOut(5000);
-							}else{
-								$(".confirmer").css("display", "none");
-								$(".hinter_title").html("提交审批成功");
-								$(".hinter").css("display", "block").fadeOut(5000);
-							}
-						},
-						error: function(err, response){
-							console.log(err);
-							$(".confirmer").css("display", "none");
-							$(".hinter_title").html("提交审批失败");
-							$(".hinter").css("display", "block").fadeOut(5000);
-						},
-					})
-				})
-				$(".confirmer").css("display", "block");
-			});
+			$(".modal2_items .modal2_item").each(function(){
+				if($("img",$(this)).attr("src")=="/img/check_54.png"){
+					people.colmId = $(this).attr("colmId");
+					people.colmEnName = $(this).attr("colmEnName");
+					people.colmValue = $(this).attr("colmValue");
+					return true;
+				}
+			})
 
+			util.confirmer('是否提交给"'+people.colmValue+'"进行"'+path.colmValue+'"',function(){
+				util.oprtLoader();
+				var submitModel = new Model();
+				submitModel.url = util.url.EFinancema_submit;
+				var colmInfo = [];
+				var ciComment ={colmEnName:"Comment",colmId:"Comment",colmValue:encodeURI($(".opinion_area").html())};
+				var ciStep ={colmEnName:path.colmEnName,colmId:path.colmId,colmValue:encodeURI(path.colmValue)};
+				var ciUser ={colmEnName:people.colmEnName,colmId:people.colmId,colmValue:encodeURI(people.colmValue)};
+				colmInfo.push(ciComment);
+				colmInfo.push(ciStep);
+				colmInfo.push(ciUser);
+				submitModel.set({procId:po.get("procId"),userId:po.get("userId"),system:po.get("system"),colmInfo:colmInfo});
+				Backbone.sync("create", submitModel, {
+					success: function(mdl, response){
+						util.oprtLoader(0);
+						console.log("-----------queryTpl-2请求成功时触发--"+path.colmId+"---"+people.colmId+"----");
+						console.log(mdl);
+						if((!mdl) || mdl.errFlag!='N'){
+							util.hint.html("提交审批失败");
+						}else{
+							util.hint("提交审批成功");
+						}
+					},
+					error: function(err, response){
+						util.oprtLoader(0);
+						console.log(err);
+						util.hint("提交审批失败");
+					},
+				})
+			},function(){
+				util.hint("已取消");
+			});
 		},
-		close_modal2:function(e){
-			$(".modal_p2").css("display", "none");
-			$(".modal2_item").remove();
+		modal2_n:function(e){
+			$(".modal_bg2").css("display", "none");
 		},
+		modal3_open:function(e){
+			$(".modal_p3").animate({width:"100%"},function(){
+				var c = _.template(general_manager_do);
+				$(".modal_p3").html(c({}));
+				$(".modal_p3 ul").append("<div class='fill98'></div>");
+				$(".bottom_tab").html('<div class="general_btn"><button class="select_all">全选</button><button class="cancel_sel">取消选中</button><button class="confirm">确定</button></div>');
+				$(".bottom_tab").css("display", "block");
+			})
+		}
 
     });
     

@@ -51,14 +51,40 @@ define([], function () {
 
         var nod = $('<div></div>').addClass('hinter').html('<span class="hinter_title">'+text+'</span>');
         $('body').append(nod);
-        var h = (parseFloat(nod.css("top")) -100)+"px";
+        // var h = (parseFloat(nod.css("bottom")) -100)+"px";
         nod.animate({
             opacity: 0, 
-            top: 80,
-          }, 1500, 'ease-out', function(){
+            bottom: 0,
+        }, 1500, 'ease-out', function(){
             nod.remove();
-          });
+        });
+    }
+
+    util.confirmer = function(title,y_func,n_func){
+        $(".confirmer_title").html(title);
+        $(".confirmer_n").click(function(){
+            if(n_func&&typeof(n_func)=="function"){
+                n_func();
+            }
+            $(".confirmer").css("display", "none");
+        })
+        $(".confirmer_y").click(function(){
+            if(y_func&&typeof(y_func)=="function"){
+                y_func();
+            }
+            $(".confirmer").css("display", "none");
+        });
+        $(".confirmer").css("display", "block");
+    }
+
+    util.oprtLoader=function(flag){
+        if(flag==0){
+            $(".oprt_loader").css("display", "none");
+        }else{
+            $(".oprt_loader").css("display", "block");
+        }
     }
 
     return util;
+    
 });
